@@ -1,0 +1,243 @@
+.architect-module {
+    background: rgba(255, 255, 255, 0.01);
+    backdrop-filter: blur(30px);
+    border-radius: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 3rem;
+    margin: 4rem 0;
+    box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.4);
+}
+
+.architect-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.architect-header h2 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    background: linear-gradient(180deg, #fff, #94a3b8);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.architect-header p {
+    color: #94a3b8;
+    font-size: 1.1rem;
+}
+
+.architect-input-zone {
+    max-width: 800px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 0.8rem;
+    display: flex;
+    gap: 1rem;
+    transition: all 0.3s ease;
+}
+
+.architect-input-zone:focus-within {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--cademmy-orange);
+    box-shadow: 0 0 20px rgba(255, 122, 0, 0.2);
+}
+
+.architect-input-zone textarea {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 1.1rem;
+    padding: 0.8rem;
+    resize: none;
+    height: 60px;
+    font-family: inherit;
+}
+
+.architect-input-zone textarea:focus {
+    outline: none;
+}
+
+.architect-send-btn {
+    background: var(--cademmy-orange);
+    border: none;
+    border-radius: 15px;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.architect-send-btn:hover:not(:disabled) {
+    transform: scale(1.1) rotate(5deg);
+    background: #ff8c00;
+}
+
+.architect-send-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.architect-response-area {
+    margin-top: 4rem;
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+.chat-bubble {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 2rem;
+    border-radius: 30px;
+    margin-bottom: 3rem;
+    line-height: 1.6;
+    color: #cbd5e1;
+    font-size: 1.1rem;
+}
+
+/* Preview Card Styles */
+.preview-card {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 35px;
+    padding: 3rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.preview-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at center, rgba(255, 122, 0, 0.05) 0%, transparent 70%);
+    z-index: 0;
+}
+
+.preview-card-content {
+    position: relative;
+    z-index: 1;
+}
+
+.card-header-main {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 2rem;
+}
+
+.card-title-zone h3 {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+}
+
+.card-badge {
+    background: rgba(255, 122, 0, 0.2);
+    color: var(--cademmy-orange);
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.grid-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin: 3rem 0;
+}
+
+.detail-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.detail-label {
+    font-size: 0.8rem;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.detail-value {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: white;
+}
+
+.objectives-list {
+    margin: 3rem 0;
+}
+
+.objectives-list h4 {
+    margin-bottom: 1.5rem;
+    color: #fff;
+}
+
+.objectives-list ul {
+    list-style: none;
+    padding: 0;
+}
+
+.objectives-list li {
+    padding-left: 1.5rem;
+    position: relative;
+    margin-bottom: 0.8rem;
+    color: #cbd5e1;
+}
+
+.objectives-list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--cademmy-orange);
+}
+
+.card-actions {
+    display: flex;
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.lock-badge {
+    margin-left: 10px;
+    font-size: 1rem;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .architect-module {
+        padding: 1.5rem;
+        border-radius: 25px;
+    }
+
+    .hero-actions {
+        flex-direction: column;
+    }
+
+    .card-actions {
+        flex-direction: column;
+    }
+}

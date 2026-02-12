@@ -1,0 +1,84 @@
+Brief actualizado – Buyer Persona recomendado para Cademmy (México)Versión lista para usar + contexto e insights de investigación (Buyer por estilo de decisión)
+Fecha: ____________    Elaborado por: ____________________________
+1) Propósito del brief
+Definir el buyer persona prioritario para Cademmy (México) y dos variantes de estilo de decisión (frecuentes en mujeres y frecuentes en hombres) para orientar: (a) mensajes comerciales, (b) contenidos, (c) SEO/SEM, y (d) diseño de oferta. Este enfoque evita estereotipos y se basa en tendencias promedio reportadas en literatura de negocios y en señales de mercado.
+2) Hallazgos de investigación (contexto del buyer)
+Hallazgo 2.1 – El decisor de RH/DO existe en ambos géneros (México).
+En México, para la ocupación “Directores y gerentes en administración, recursos humanos y mercadotecnia”, la distribución reportada para 1T-2025 es 54.4% hombres y 45.6% mujeres. Implicación: es realista preparar mensajes que funcionen para ambos perfiles.
+Fuente: DataMéxico (Secretaría de Economía), perfil ocupacional, 1T-2025.
+Hallazgo 2.2 – En B2B, existen diferencias promedio por género en estilo de compra (no reglas).
+La literatura de negocios (investigación divulgada por Harvard Business Review con origen en Deloitte) describe tendencias promedio: las mujeres tienden a involucrar más perspectivas y buscar consenso/alineación antes de cerrar una decisión; los hombres tienden a preferir síntesis, rapidez y enfoque tipo “misión”. Implicación: conviene mantener un buyer núcleo (por rol y necesidad) y ajustar el encuadre de evidencia y mensajes en dos variantes.
+Fuente: Benko & Pelster, “How Women Decide”, Harvard Business Review (2013).
+Hallazgo 2.3 – Para RH/L&D, la certificación funciona como ‘seguro’ para defender calidad.
+En compras de capacitación/certificación, la certificación (p. ej., CONOCER) tiende a funcionar como respaldo para estandarizar y defender calidad mínima, más que como motivador primario. El motivador primario suele ser impacto y control (consistencia/evidencia).
+Nota: este hallazgo debe validarse con entrevistas/encuestas del mercado objetivo de Cademmy.
+3) Buyer persona núcleo (válido para ambos géneros)
+Nombre arquetipo: Mariana (o Mauricio), Dirección de RH/DO (con Gerencia de Capacitación como influenciador).
+Ubicación: México.
+Tipo de empresa: 200+ colaboradores; manufactura/servicios/retail; multi-sitio o en crecimiento.
+Contexto operativo: instructores internos (SMEs/jefaturas) imparten capacitación; variabilidad entre instructores.
+4) Comité de compra
+Decisor (quién firma): Dirección de RH o DO.
+Influenciador (quien recomienda): Gerencia/Coordinación de Capacitación / Universidad Corporativa.
+Bloqueador (quien objeta): Finanzas, Compliance/Auditoría, Operaciones (tiempo/costo/disponibilidad).
+5) Job-to-be-done (necesidad central)
+“Estandarizar la capacitación interna para que sea defendible y medible (evidencia), reduzca la variabilidad entre instructores y muestre impacto observable en desempeño.”
+6) Dolores prioritarios
+• Baja transferencia al puesto: se toma el curso, pero no se ve cambio en el trabajo.
+• Inconsistencia: cada capacitador imparte ‘a su manera’; calidad variable.
+• Falta de instrumentos: evaluaciones, rúbricas, listas de cotejo, evidencias, manuales.
+• Presión por justificar inversión: Dirección pide resultados, ROI, cumplimiento o trazabilidad.
+• Riesgo reputacional interno: RH queda expuesto si capacitación no demuestra valor.
+7) Oferta y promesa recomendada (Cademmy)
+Producto ancla: Formador 4.0 para capacitadores internos (enfoque práctico y orientado a evidencia).
+Promesa (lenguaje de negocio): “Capacitación interna consistente, medible y defendible ante Dirección.”
+Componentes que elevan confianza: instrumentos listos + portafolio de evidencias + certificación como respaldo (según aplicabilidad).
+8) Dos variantes de estilo de decisión (para personalizar mensajes)
+8.1 Variante A – Estilo de decisión ‘consenso + reducción de incertidumbre’ (frecuente en mujeres)
+Qué valora más: claridad de proceso, transparencia, evidencia, alineación y gestión del riesgo.
+Pruebas que convencen: checklist descargable, casos, instrumentos, acompañamiento, trazabilidad.
+Copy sugerido (base):
+• “Evidencia defendible para auditoría y Dirección.”
+• “Instrumentos listos: rúbricas, listas de cotejo y portafolio de evidencias.”
+• “Acompañamiento paso a paso para estandarizar a tus instructores internos.”
+Fuente de tendencia: HBR (Benko & Pelster, 2013).
+8.2 Variante B – Estilo de decisión ‘eficiencia + síntesis + métricas’ (frecuente en hombres)
+Qué valora más: rapidez, números, costo/beneficio, implementación clara y KPIs.
+Pruebas que convencen: one-pager ejecutivo, matriz comparativa, roadmap y metas KPI.
+Copy sugerido (base):
+• “Reduce variabilidad entre instructores internos y acelera consistencia.”
+• “Mapa KPI: objetivo → métrica → fuente de datos.”
+• “Implementación por cohortes con resultados medibles en semanas.”
+Fuente de tendencia: HBR (Benko & Pelster, 2013) – contraparte práctica de estilos reportados.
+9) SEO/SEM – Keywords base (para depurar en SERP)
+Keywords positivas (ejemplos):
+• certificación EC0217.01
+• curso formador de formadores empresa
+• capacitación para instructores internos
+• estandarizar capacitación interna
+• certificación EC0301 diseño de cursos
+• formación de capacitadores internos
+• certificación CONOCER formador
+• evaluación de capacitación con evidencias
+• mejorar transferencia de capacitación al puesto
+Keywords negativas (ejemplos):
+• gratis
+• PDF
+• plantilla gratis
+• tareas
+• ejemplos resueltos
+• empleo instructor
+• salario
+• curso escolar
+• definición
+• qué es
+10) KPIs recomendados (mapa KPI)
+• Demanda orgánica: clics orgánicos y consultas → Search Console / GA4.
+• Conversión: tasa de conversión a lead (form/WhatsApp) → GA4 / CRM / Ads.
+• Calidad de lead: % leads con perfil RH/Capacitación → CRM.
+• Eficiencia SEM: CPA / conversión por grupo de keywords → Google Ads.
+• Embudo comercial: lead→cita→propuesta→cierre → CRM.
+11) Plan mínimo de validación (para asegurar cercanía a la realidad)
+Para que este buyer sea ‘lo más cercano a la realidad’, se recomienda validar con:• 15–30 respuestas de encuesta (Google Forms) con RH/L&D en México.• 6–8 entrevistas cortas (12–20 min) con decisores e influenciadores.• Revisión SERP/Ads: qué mensajes dominan y qué palabras aparecen en anuncios y títulos.
+12) Bibliografía (APA 7, verificable)
+Benko, C., & Pelster, B. (2013, September). How women decide. Harvard Business Review.Secretaría de Economía (DataMéxico). (2025). Directores y gerentes en administración, recursos humanos y mercadotecnia (México, 1T-2025).

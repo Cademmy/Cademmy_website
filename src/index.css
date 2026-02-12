@@ -1,0 +1,88 @@
+:root {
+  /* Brand Palette from Logo */
+  --cademmy-orange: #FF7A00;
+  --cademmy-red-orange: #FF4D00;
+  --cademmy-yellow: #FFB800;
+  --cademmy-charcoal: #4D4D4D;
+  --cademmy-grey: #808080;
+  --cademmy-white: #FFFFFF;
+
+  /* Neutrals */
+  --bg-color: var(--cademmy-white);
+  --text-color: var(--cademmy-charcoal);
+  --text-muted: var(--cademmy-grey);
+
+  /* Fonts */
+  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* --- ADN Visual: Profesional --- */
+.app-container.profile-professional {
+  --cademmy-orange: #FF7A00;
+  --bg-color: #ffffff;
+  --text-color: #2D3748;
+}
+
+/* --- ADN Visual: Empresa --- */
+.app-container.profile-company {
+  --cademmy-orange: #FF4D00;
+  /* Un rojo-naranja más intenso/serio */
+  --bg-color: #F8FAFC;
+  /* Un fondo ligeramente azulado/grisáceo más corporativo */
+  --text-color: #1A202C;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  min-height: 100vh;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Sora', sans-serif;
+  font-weight: 700;
+}
+
+/* Gradients for UI elements */
+.brand-gradient {
+  background: linear-gradient(135deg, var(--cademmy-orange) 0%, var(--cademmy-red-orange) 100%);
+}
+
+.brand-gradient-hover {
+  background: linear-gradient(135deg, var(--cademmy-red-orange) 0%, var(--cademmy-orange) 100%);
+}
+
+/* Global Animations */
+.animate-fade-in {
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
