@@ -1,213 +1,215 @@
-import { Helmet } from 'react-helmet-async';
-import { Brain, CheckCircle, Calendar, Users, Briefcase, Cpu, BarChart } from 'lucide-react';
-import './LandingInstructor40.css';
+import React, { useState } from 'react';
+import { CheckCircle2, Play, Users, Award, Star, ArrowRight, ShieldCheck, Zap, X } from 'lucide-react';
 
 const LandingInstructor40 = () => {
-    const [activeTab, setActiveTab] = useState('b2b'); // Default to B2B view for higher value
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-    const modules = [
-        { id: 1, title: "Introducción al EC0217.01 y la IA", date: "23 Mayo", time: "10:00 - 12:00", priceB2C: "$720", priceB2B: "$3,980", hours: "2 hrs" },
-        { id: 2, title: "Planeación Didáctica con IA", date: "30 Mayo", time: "10:00 - 14:00", priceB2C: "$1,440", priceB2B: "$7,960", hours: "4 hrs" },
-        { id: 3, title: "Técnicas Instruccionales Modernas", date: "06 Junio", time: "10:00 - 13:00", priceB2C: "$1,080", priceB2B: "$5,970", hours: "3 hrs" },
-        { id: 4, title: "Conducción de Sesiones Efectivas", date: "13 Junio", time: "10:00 - 13:00", priceB2C: "$1,080", priceB2B: "$5,970", hours: "3 hrs" },
-        { id: 5, title: "Evaluación del Aprendizaje con IA", date: "20 Junio", time: "10:00 - 14:00", priceB2C: "$1,440", priceB2B: "$7,960", hours: "4 hrs" },
-        { id: 6, title: "Portafolio de Evidencias (Automátizado)", date: "27 Junio", time: "09:00 - 14:00", priceB2C: "$1,800", priceB2B: "$9,950", hours: "5 hrs" },
-        { id: 7, title: "Simulaciones y Roleplay con IA", date: "04 Julio", time: "10:00 - 13:00", priceB2C: "$1,080", priceB2B: "$5,970", hours: "3 hrs" },
-    ];
-
-    return (
-        <div className="landing-instructor-container">
-            <Helmet>
-                <title>Curso Instructor 4.0 con IA | Certificación EC0217.01 | Cademmy</title>
-                <meta name="description" content="Certificación de instructores con IA y Simuladores. Modalidad híbrida. Inicio 23 de Mayo. Precios B2B y B2C disponibles." />
-            </Helmet>
-
-            {/* --- HERO SECTION --- */}
-            <header className="hero-instructor">
-                <div className="hero-content">
-                    <div className="hero-text">
-                        <div className="badge-new">Nueva Generación 2026</div>
-                        <h1 className="hero-title">
-                            INSTRUCTOR 4.0: <br />
-                            <span className="accent-text">Enseña con IA,</span> <br />
-                            Certifícate con Resultados.
-                        </h1>
-                        <p className="hero-desc">
-                            El primer programa en México que une la certificación <strong>EC0217.01</strong> con <strong>Simuladores de IA</strong> y herramientas de diseño automático.
-                            <br /><br />
-                            Ideal para empresas que buscan <strong>Rentabilidad</strong> e instructores que buscan <strong>Evolución</strong>.
-                        </p>
-                        <div className="hero-buttons">
-                            <button className="btn-primary-orange">
-                                👉 Quiero Inscribirme
-                            </button>
-                            <button className="btn-secondary-outline">
-                                Ver Temario Modular
-                            </button>
-                        </div>
-                        <div className="hero-meta">
-                            <div className="meta-item">
-                                <Calendar size={16} className="icon-orange" /> Inicio: 23 Mayo 2026
-                            </div>
-                            <div className="meta-item">
-                                <Users size={16} className="icon-orange" /> Cupo Limitado
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Visual del Software/Simulador */}
-                    <div className="hero-visual">
-                        <div className="simulator-mockup">
-                            <div className="mockup-header">
-                                <div className="dot red"></div>
-                                <div className="dot yellow"></div>
-                                <div className="dot green"></div>
-                                <span className="mockup-title">Cademmy Solutions Architect v1.0</span>
-                            </div>
-                            <div className="mockup-body">
-                                <div className="skeleton-line w-75"></div>
-                                <div className="skeleton-line w-50"></div>
-                                <div className="sim-preview-box">
-                                    [Vista Previa: Simulador de Roleplay Activo]
-                                </div>
-                                <div className="console-text">
-                                    &gt; Generando Estrategia de Curso... 100%
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </header>
-
-            {/* --- BENEFICIOS (Grid) --- */}
-            <section className="benefits-section">
-                <div className="section-header">
-                    <h2>Más que un curso, una actualización de sistema</h2>
-                    <p>Por qué las empresas y universidades eligen Instructor 4.0</p>
-                </div>
-
-                <div className="benefits-grid">
-                    {[
-                        { icon: Brain, title: "Neuro-Pedagogía", desc: "Aprende a mantener la atención usando principios de neurociencia y música bio-impulsada." },
-                        { icon: Cpu, title: "IA Integrada", desc: "Deja de sufrir planeando. Usa nuestra IA para diseñar cartas descriptivas y evaluaciones en minutos." },
-                        { icon: CheckCircle, title: "Certificación EC0217.01", desc: "Alineación total al estándar CONOCER. Validez oficial nacional con enfoque moderno." },
-                        { icon: BarChart, title: "Simuladores Reales", desc: "Practica situaciones difíciles con nuestro Director de RH Virtual antes de enfrentarte a uno real." },
-                        { icon: Briefcase, title: "Rentabilidad B2B", desc: "Para empresas: Convierte a tu personal en instructores expertos y reduce gastos externos." },
-                        { icon: Users, title: "Formato Híbrido", desc: "Clases presenciales de alto impacto + plataforma digital 24/7." }
-                    ].map((item, idx) => (
-                        <div key={idx} className="benefit-card">
-                            <item.icon className="benefit-icon" />
-                            <h3>{item.title}</h3>
-                            <p>{item.desc}</p>
-                        </div>
-                    ))}
-                </div>
-            </section>
-
-            {/* --- TABLA DE PRECIOS Y FECHAS (La Joya) --- */}
-            <section className="pricing-section" id="precios">
-                <div className="section-container">
-                    <div className="pricing-header-row">
-                        <div>
-                            <h2>Calendario y Modalidades</h2>
-                            <p>Primera Emisión 2026 | Selecciona tu perfil para ver precios</p>
-                        </div>
-
-                        {/* Toggle B2B / B2C */}
-                        <div className="pricing-toggle">
-                            <button
-                                onClick={() => setActiveTab('b2c')}
-                                className={`toggle-btn ${activeTab === 'b2c' ? 'active-b2c' : ''}`}
-                            >
-                                Individual (B2C)
-                            </button>
-                            <button
-                                onClick={() => setActiveTab('b2b')}
-                                className={`toggle-btn ${activeTab === 'b2b' ? 'active-b2b' : ''}`}
-                            >
-                                Empresas (B2B)
-                            </button>
-                        </div>
-                    </div>
-
-                    <div className="pricing-table-container">
-                        <table className="pricing-table">
-                            <thead>
-                                <tr>
-                                    <th>Módulo</th>
-                                    <th>Fecha / Hora</th>
-                                    <th>Duración</th>
-                                    <th className="text-right">
-                                        {activeTab === 'b2b' ? 'Inversión Empresa' : 'Inversión Individual'}
-                                    </th>
-                                    <th className="text-center">Acción</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {modules.map((mod) => (
-                                    <tr key={mod.id}>
-                                        <td className="font-medium">{mod.title}</td>
-                                        <td className="text-muted">{mod.date} <br /> <span className="text-small">{mod.time}</span></td>
-                                        <td className="text-muted">{mod.hours}</td>
-                                        <td className={`text-right font-bold ${activeTab === 'b2b' ? 'text-indigo' : 'text-orange'}`}>
-                                            {activeTab === 'b2b' ? mod.priceB2B : mod.priceB2C}
-                                        </td>
-                                        <td className="text-center">
-                                            <button className="btn-select">
-                                                Seleccionar
-                                            </button>
-                                        </td>
-                                    </tr>
-                                ))}
-                                {/* TOTAL ROW */}
-                                <tr className={`total-row ${activeTab === 'b2b' ? 'bg-indigo-light' : 'bg-orange-light'}`}>
-                                    <td colSpan={3} className="total-label">
-                                        {activeTab === 'b2b' ? 'PAQUETE CORPORATIVO (Hasta 30 Pax)' : 'CURSO COMPLETO INDIVIDUAL'}
-                                        <p className="total-subtext">
-                                            {activeTab === 'b2b'
-                                                ? 'Incluye: Acceso a plataforma, certificación de instructores y licencia de software Architect.'
-                                                : 'Incluye: Todos los módulos + Acceso a Simulador.'}
-                                        </p>
-                                    </td>
-                                    <td className="total-price text-right">
-                                        <div className="price-old">
-                                            {activeTab === 'b2b' ? '$59,700' : '$10,500'}
-                                        </div>
-                                        <div className={`price-final ${activeTab === 'b2b' ? 'text-indigo' : 'text-orange'}`}>
-                                            {activeTab === 'b2b' ? '$47,760' : '$8,640'}
-                                        </div>
-                                        <div className="price-tax">MXN + IVA</div>
-                                    </td>
-                                    <td className="text-center">
-                                        <button className={`btn-subscribe ${activeTab === 'b2b' ? 'btn-indigo' : 'btn-orange'}`}>
-                                            Inscribirme Ahora
-                                        </button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </section>
-
-            {/* --- CTA FINAL --- */}
-            <section className="cta-final-dark">
-                <h2>¿Listo para evolucionar tu enseñanza?</h2>
-                <p>No te quedes en el pasado. Únete a la generación de instructores que usan IA para potenciar el talento humano.</p>
-                <div className="cta-actions">
-                    <button className="btn-white">
-                        Contactar Asesor B2B
-                    </button>
-                    <button className="btn-primary-orange">
-                        Descargar Temario PDF
-                    </button>
-                </div>
-                <p className="legal-text">
-                    Cademmy 2026. Aviso de Privacidad y Términos Legales al pie.
-                </p>
-            </section>
+  return (
+    <div className="min-h-screen bg-slate-50 font-sans text-slate-900">
+      {/* --- HERO SECTION --- */}
+      <div className="relative overflow-hidden bg-slate-900 text-white">
+        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80')] bg-cover bg-center opacity-20"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-900/80 to-slate-900/95"></div>
+        
+        <div className="relative z-10 mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <div className="mb-6 inline-flex items-center rounded-full bg-indigo-500/10 px-4 py-1.5 ring-1 ring-indigo-500/50">
+              <span className="mr-2 flex h-2 w-2">
+                <span className="absolute inline-flex h-2 w-2 animate-ping rounded-full bg-indigo-400 opacity-75"></span>
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-indigo-500"></span>
+              </span>
+              <span className="text-sm font-semibold text-indigo-200">Nueva Certificación 2026</span>
+            </div>
+            
+            <h1 className="mb-6 text-5xl font-bold tracking-tight sm:text-7xl">
+              Instructor <span className="bg-gradient-to-r from-orange-400 to-red-500 bg-clip-text text-transparent">4.0</span>
+            </h1>
+            <p className="mx-auto mb-10 max-w-2xl text-xl text-slate-300">
+              La primera certificación en México que integra <strong>Inteligencia Artificial</strong> y <strong>Simuladores de Realidad</strong> al estándar EC0217.01.
+            </p>
+            
+            <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+              <button 
+                onClick={() => setIsModalOpen(true)}
+                className="group flex items-center gap-2 rounded-full bg-gradient-to-r from-orange-600 to-red-600 px-8 py-4 text-lg font-bold text-white transition-all hover:scale-105 hover:shadow-lg hover:shadow-orange-500/25"
+              >
+                Inscribirme Ahora
+                <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+              </button>
+              <button className="flex items-center gap-2 rounded-full bg-white/10 px-8 py-4 text-lg font-medium text-white backdrop-blur-sm transition-all hover:bg-white/20">
+                <Play className="h-5 w-5 fill-current" />
+                Ver Trailer
+              </button>
+            </div>
+            <p className="mt-6 text-sm text-slate-400">Próxima fecha: <strong>23 de Mayo</strong> • Cupo limitado a 20 instructores</p>
+          </div>
         </div>
-    );
+      </div>
+
+      {/* --- EL PROBLEMA (Dolor) --- */}
+      <div className="bg-white py-20">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-16 text-center">
+            <h2 className="text-3xl font-bold text-slate-900">El modelo tradicional está muerto</h2>
+            <p className="mt-4 text-lg text-slate-600">Ser "bueno hablando" ya no es suficiente. El mercado corporativo exige más.</p>
+          </div>
+          
+          <div className="grid gap-8 md:grid-cols-3">
+            {[
+              { title: "Diapositivas Aburridas", desc: "El 80% de los alumnos olvida el contenido en 24 horas si solo usas PowerPoint.", icon: Users },
+              { title: "Teoría sin Práctica", desc: "Saber la teoría no garantiza que sepas manejar un grupo difícil en la vida real.", icon: Award },
+              { title: "Cursos Genéricos", desc: "La IA ya puede crear temarios. Tu valor está en la experiencia humana y tecnológica.", icon: Zap }
+            ].map((item, i) => (
+              <div key={i} className="rounded-2xl border border-slate-100 bg-slate-50 p-8 transition-shadow hover:shadow-xl">
+                <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-orange-100 text-orange-600">
+                  <item.icon className="h-8 w-8" />
+                </div>
+                <h3 className="mb-3 text-xl font-bold text-slate-900">{item.title}</h3>
+                <p className="text-slate-600 leading-relaxed">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* --- LA SOLUCIÓN (Metodología) --- */}
+      <div className="bg-slate-900 py-20 text-white">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid items-center gap-12 lg:grid-cols-2">
+            <div>
+              <div className="inline-block rounded-lg bg-indigo-600 px-3 py-1 text-sm font-semibold uppercase tracking-wider">Metodología Híbrida</div>
+              <h2 className="mt-6 text-4xl font-bold">No es un curso.<br/>Es una transformación.</h2>
+              <p className="mt-6 text-lg text-slate-300">Combinamos la certificación oficial SEP-CONOCER con las herramientas más avanzadas de Silicon Valley.</p>
+              
+              <ul className="mt-8 space-y-4">
+                {[
+                  "Certificación Oficial EC0217.01 (SEP-CONOCER)",
+                  "Taller de Diseño Instruccional con ChatGPT",
+                  "Simulador de Realidad Virtual para hablar en público",
+                  "Acceso a la plataforma LMS de Cademmy por 1 año"
+                ].map((item, i) => (
+                  <li key={i} className="flex items-center gap-3">
+                    <CheckCircle2 className="h-6 w-6 text-green-400" />
+                    <span className="text-slate-200">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="relative rounded-2xl bg-gradient-to-tr from-indigo-500 to-purple-500 p-1">
+              <div className="relative h-full overflow-hidden rounded-xl bg-slate-800">
+                 {/* Placeholder de imagen o video */}
+                 <div className="aspect-video bg-slate-700 flex items-center justify-center">
+                    <span className="text-slate-500 font-medium">Imagen del Simulador VR</span>
+                 </div>
+                 <div className="p-8">
+                    <h3 className="text-xl font-bold">Entrena sin riesgos</h3>
+                    <p className="mt-2 text-slate-400">Nuestro simulador te permite practicar frente a audiencias virtuales difíciles antes de salir al escenario real.</p>
+                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* --- PRECIOS (Oferta Irresistible) --- */}
+      <div className="py-24 bg-slate-50" id="pricing">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-slate-900">Elige tu camino</h2>
+            <p className="mt-4 text-xl text-slate-600">Inversión estratégica para tu carrera profesional</p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            {/* OPCIÓN B2C - Para ti */}
+            <div className="relative bg-white rounded-3xl p-8 shadow-xl border-2 border-orange-100 hover:border-orange-500 transition-colors">
+              <div className="absolute top-0 right-0 bg-orange-500 text-white text-xs font-bold px-3 py-1 rounded-bl-xl rounded-tr-2xl">MÁS POPULAR</div>
+              <h3 className="text-2xl font-bold text-slate-900">Instructor Independiente</h3>
+              <p className="text-slate-500 mt-2">Para freelance y consultores</p>
+              <div className="mt-6 flex items-baseline">
+                <span className="text-5xl font-bold text-slate-900">$4,500</span>
+                <span className="text-slate-500 ml-2">MXN</span>
+              </div>
+              <p className="text-sm text-orange-600 font-medium mt-2">¡Ahorras $2,000 si pagas hoy!</p>
+              
+              <ul className="mt-8 space-y-4 mb-8">
+                <li className="flex items-center gap-3 text-slate-700"><CheckCircle2 className="h-5 w-5 text-orange-500"/> Certificado EC0217.01</li>
+                <li className="flex items-center gap-3 text-slate-700"><CheckCircle2 className="h-5 w-5 text-orange-500"/> Manuales Digitales</li>
+                <li className="flex items-center gap-3 text-slate-700"><CheckCircle2 className="h-5 w-5 text-orange-500"/> 1 Mes de Simulador VR</li>
+              </ul>
+              
+              <button 
+                onClick={() => setIsModalOpen(true)}
+                className="w-full py-4 rounded-xl bg-orange-600 text-white font-bold hover:bg-orange-700 transition-colors"
+              >
+                Apartar lugar con $500
+              </button>
+            </div>
+
+            {/* OPCIÓN B2B - Empresas */}
+            <div className="bg-slate-900 rounded-3xl p-8 shadow-2xl text-white border border-slate-700">
+              <h3 className="text-2xl font-bold">Pack Empresarial</h3>
+              <p className="text-slate-400 mt-2">Para equipos de capacitación</p>
+              <div className="mt-6 flex items-baseline">
+                <span className="text-5xl font-bold">$18,000</span>
+                <span className="text-slate-400 ml-2">MXN</span>
+              </div>
+              <p className="text-sm text-indigo-400 font-medium mt-2">Hasta 5 instructores ($3,600 c/u)</p>
+              
+              <ul className="mt-8 space-y-4 mb-8">
+                <li className="flex items-center gap-3 text-slate-300"><ShieldCheck className="h-5 w-5 text-indigo-400"/> Todo lo del plan individual</li>
+                <li className="flex items-center gap-3 text-slate-300"><ShieldCheck className="h-5 w-5 text-indigo-400"/> Reporte de desempeño RH</li>
+                <li className="flex items-center gap-3 text-slate-300"><ShieldCheck className="h-5 w-5 text-indigo-400"/> Factura + DC3 Empresarial</li>
+              </ul>
+              
+              <button className="w-full py-4 rounded-xl bg-indigo-600 text-white font-bold hover:bg-indigo-700 transition-colors">
+                Contactar Ventas
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* --- FOOTER SIMPLE --- */}
+      <div className="bg-slate-950 py-12 text-center text-slate-600 text-sm">
+        <p>© 2026 Cademmy. Todos los derechos reservados.</p>
+      </div>
+
+      {/* --- MODAL DE REGISTRO (Simple) --- */}
+      {isModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4">
+          <div className="relative w-full max-w-md bg-white rounded-2xl p-8 animate-in fade-in zoom-in duration-300">
+            <button 
+              onClick={() => setIsModalOpen(false)}
+              className="absolute top-4 right-4 text-slate-400 hover:text-slate-600"
+            >
+              <X className="h-6 w-6" />
+            </button>
+            
+            <h3 className="text-2xl font-bold text-slate-900 mb-2">¡Excelente decisión!</h3>
+            <p className="text-slate-600 mb-6">Déjanos tus datos para enviarte el temario completo y los datos de pago.</p>
+            
+            <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
+              <div>
+                <label className="block text-sm font-medium text-slate-700 mb-1">Nombre Completo</label>
+                <input type="text" className="w-full rounded-lg border border-slate-300 px-4 py-2 focus:border-orange-500 focus:ring-orange-500" placeholder="Ej. Juan Pérez" />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-slate-700 mb-1">WhatsApp</label>
+                <input type="tel" className="w-full rounded-lg border border-slate-300 px-4 py-2 focus:border-orange-500 focus:ring-orange-500" placeholder="Ej. 55 1234 5678" />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-slate-700 mb-1">Correo Electrónico</label>
+                <input type="email" className="w-full rounded-lg border border-slate-300 px-4 py-2 focus:border-orange-500 focus:ring-orange-500" placeholder="juan@empresa.com" />
+              </div>
+              <button className="w-full rounded-xl bg-orange-600 py-3 font-bold text-white hover:bg-orange-700">
+                Enviar Solicitud
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
+    </div>
+  );
 };
 
 export default LandingInstructor40;
