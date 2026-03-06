@@ -11,13 +11,18 @@ interface AuthModalProps {
 const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
     const [step, setStep] = useState<'type' | 'login'>('type');
     const [selectedType, setSelectedType] = useState<'company' | 'professional' | null>(null);
+    const [error, setError] = useState<string | null>(null);
+    const [loading, setLoading] = useState(false);
 
     const handleTypeSelect = (type: 'company' | 'professional') => {
         setSelectedType(type);
         setStep('login');
+        setError(null);
     };
 
     const handleLogin = async (provider: 'google' | 'microsoft' | 'apple') => {
+        setLoading(true);
+        setError(null);
         try {
             let user;
             if (provider === 'google') user = await AuthService.loginWithGoogle();
@@ -32,14 +37,23 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
                 });
                 onClose();
             }
-        } catch (error) {
-            console.error("Login failed:", error);
+        } catch (err: any) {
+            console.error("Login failed:", err);
+            if (err.code === 'auth/configuration-not-found') {
+                setError(`El acceso con ${provider} aún no está habilitado en la consola de Firebase. Por favor, contacta a soporte o usa otro método.`);
+            } else {
+                setError(`Error al iniciar sesión con ${provider}. Por favor, intenta de nuevo.`);
+            }
+        } finally {
+            setLoading(false);
         }
     };
 
     return (
         <Modal isOpen={isOpen} onClose={onClose} title={step === 'type' ? 'Personaliza tu experiencia' : 'Ingresa a Cademmy'}>
             <div className="auth-modal-content">
+                {error && <div className="auth-error">{error}</div>}
+
                 {step === 'type' ? (
                     <div className="type-selector-step">
                         <p className="instruction-text">¿Para quién es la capacitación?</p>
@@ -55,17 +69,44 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
                                 <p>Tag: B2C / Docente</p>
                             </div>
                         </div>
+                        <div className="auth-modal-footer">
+                            <button className="text-link-btn" onClick={() => {
+                                setSelectedType('professional'); // Default profile
+                                setStep('login');
+                                setError(null);
+                            }}>
+                                Ya tengo cuenta / Iniciar Sesión
+                            </button>
+                        </div>
                     </div>
                 ) : (
                     <div className="login-step">
                         <p className="selection-badge">
                             Perfil seleccionado: <strong>{selectedType === 'company' ? 'Empresa' : 'Instructor'}</strong>
-                            <button className="change-btn" onClick={() => setStep('type')}>Cambiar</button>
+                            <button className="change-btn" onClick={() => setStep('type')} disabled={loading}>Cambiar</button>
                         </p>
                         <div className="social-login-grid">
-                            <button className="social-btn google" onClick={() => handleLogin('google')}>Continuar con Google</button>
-                            <button className="social-btn microsoft" onClick={() => handleLogin('microsoft')}>Continuar con Microsoft</button>
-                            <button className="social-btn apple" onClick={() => handleLogin('apple')}>Continuar con Apple</button>
+                            <button
+                                className={`social-btn google ${loading ? 'disabled' : ''}`}
+                                onClick={() => handleLogin('google')}
+                                disabled={loading}
+                            >
+                                {loading ? 'Cargando...' : 'Continuar con Google'}
+                            </button>
+                            <button
+                                className={`social-btn microsoft ${loading ? 'disabled' : ''}`}
+                                onClick={() => handleLogin('microsoft')}
+                                disabled={loading}
+                            >
+                                {loading ? 'Cargando...' : 'Continuar con Microsoft'}
+                            </button>
+                            <button
+                                className={`social-btn apple ${loading ? 'disabled' : ''}`}
+                                onClick={() => handleLogin('apple')}
+                                disabled={loading}
+                            >
+                                {loading ? 'Cargando...' : 'Continuar con Apple'}
+                            </button>
                         </div>
                     </div>
                 )}

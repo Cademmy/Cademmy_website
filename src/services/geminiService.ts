@@ -4,7 +4,7 @@
  */
 
 const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY || "AIzaSyC46ItNCIvMNJaJO4p5X1YZT6-QDxFV6FY";
-const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`;
+const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=${GEMINI_API_KEY}`;
 
 export interface ArchitectProject {
     title: string;
@@ -109,12 +109,15 @@ export const roleplayWithAI = async (systemPrompt: string, userMessage: string):
         });
 
         const data = await response.json();
-        if (!response.ok) throw new Error(data.error?.message || "Error en API");
+        if (!response.ok) {
+            console.error("Gemini API Error Detail:", data);
+            throw new Error(data.error?.message || `Error API: ${response.status}`);
+        }
 
         return data.candidates[0].content.parts[0].text;
 
     } catch (error: any) {
         console.error("Roleplay Error:", error);
-        return "Lo siento, el evaluador está ocupado. Intenta de nuevo.";
+        throw error;
     }
 };

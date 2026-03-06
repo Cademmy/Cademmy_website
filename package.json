@@ -11,12 +11,16 @@
   },
   "dependencies": {
     "@google/generative-ai": "^0.24.1",
+    "docx-preview": "^0.3.7",
     "firebase": "^12.8.0",
+    "lucide-react": "^0.344.0",
+    "mammoth": "^1.11.0",
+    "pdf-parse": "^2.4.5",
+    "pdfjs-dist": "^5.4.624",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-helmet-async": "^2.0.5",
-    "react-router-dom": "^6.24.1",
-    "lucide-react": "^0.344.0"
+    "react-router-dom": "^6.24.1"
   },
   "devDependencies": {
     "@types/react": "^18.3.3",

@@ -7,7 +7,7 @@ import { useUser } from '../context/UserContext';
 import { AuthService } from '../services/authService';
 
 const Navbar: React.FC = () => {
-    const { user, userData, userType, setUserType } = useUser();
+    const { user, userData, userType, setUserType, isAdmin } = useUser();
 
     return (
         <nav className="navbar">
@@ -41,37 +41,20 @@ const Navbar: React.FC = () => {
             </div>
 
             <ul className="navbar-links">
-                <li>
-                    <Link to="/instructor-4-0" style={{ color: '#f97316', fontWeight: 'bold', border: '1px solid #f97316', padding: '5px 10px', borderRadius: '5px' }}>
-                        Nuevo: Instructor 4.0
-                    </Link>
-                </li>
-                <li>
-                    <Link to={userType === 'company' ? '/certificaciones/empresas' : '/certificaciones/profesionales'}>
-                        Certificaciones
-                    </Link>
-                </li>
-                <li>
-                    <Link to={userType === 'company' ? '/cursos-presenciales' : '/cursos-en-linea'}>
-                        Capacitación
-                    </Link>
-                </li>
-                <li><Link to="/consultoria">Consultoría</Link></li>
+                <li><Link to="/aprendizaje">Learning</Link></li>
+                <li><Link to="/certificacion">Certification</Link></li>
+                <li><Link to="/consultoria">Consulting</Link></li>
+                <li><Link to="/ia-lab">IA Lab</Link></li>
                 <li className="nav-dropdown">
                     <span className="dropdown-trigger">Recursos</span>
                     <ul className="dropdown-menu">
-                        <li><Link to="/blog">Artículos</Link></li>
+                        <li><Link to="/blog">Blog</Link></li>
                         <li><Link to="/cademmy-tv">Cademmy TV</Link></li>
                         <li><Link to="/podcast">Podcast</Link></li>
-                        <li className="sub-dropdown">
-                            <span className="sub-trigger">IA Lab</span>
-                            <ul className="sub-menu">
-                                <li><Link to="/ia/music-lab">Música Pedagógica</Link></li>
-                                <li><Link to="/ia/planeador-didactico">Planeador Didáctico</Link></li>
-                            </ul>
-                        </li>
+                        <li><Link to="/recursos">Otros Recursos</Link></li>
                     </ul>
                 </li>
+                <li><Link to="/contacto">Contacto</Link></li>
             </ul>
 
             <div className="navbar-actions">
@@ -83,6 +66,11 @@ const Navbar: React.FC = () => {
                             <span className="coin-label">CADs</span>
                         </div>
                         <div className="user-profile-menu">
+                            {isAdmin && (
+                                <Link to="/admin" className="admin-link-btn" title="Panel de Administración">
+                                    ⚙️ Admin
+                                </Link>
+                            )}
                             <img src={user.photoURL || ''} alt="Avatar" className="user-avatar" />
                             <button className="logout-mini" onClick={() => AuthService.logout()}>Salir</button>
                         </div>

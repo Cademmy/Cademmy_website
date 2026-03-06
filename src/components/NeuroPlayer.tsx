@@ -17,17 +17,56 @@ const NeuroPlayer: React.FC<NeuroPlayerProps> = ({ videoUrl, title, onCompleted 
         console.log(`Cambiando ambiente sonoro a: ${mood}`);
     }, [mood]);
 
+    const getEmbedUrl = (url: string) => {
+        if (!url) return '';
+
+        // YouTube detection
+        const ytMatch = url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|v\/|shorts\/))([\w-]{11})/);
+        if (ytMatch) return `https://www.youtube.com/embed/${ytMatch[1]}?autoplay=0&rel=0`;
+
+        // Vimeo detection
+        const vimeoMatch = url.match(/vimeo\.com\/(?:video\/)?(\d+)/);
+        if (vimeoMatch) return `https://player.vimeo.com/video/${vimeoMatch[1]}`;
+
+        return url;
+    };
+
+    const isDirectVideo = (url: string) => {
+        return url.match(/\.(mp4|webm|ogg)$/i) || url.includes('firebasestorage.googleapis.com');
+    };
+
+    const renderVideo = () => {
+        const embedUrl = getEmbedUrl(videoUrl);
+
+        if (isDirectVideo(videoUrl)) {
+            return (
+                <video
+                    controls
+                    className="native-video-player"
+                    onEnded={onCompleted}
+                >
+                    <source src={videoUrl} type="video/mp4" />
+                    Tu navegador no soporta el elemento de video.
+                </video>
+            );
+        }
+
+        return (
+            <iframe
+                src={embedUrl}
+                title={title}
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+            ></iframe>
+        );
+    };
+
     return (
         <div className="neuro-player-container">
             <div className="main-stage">
                 <div className="video-wrapper">
-                    <iframe
-                        src={`${videoUrl}?autoplay=0`}
-                        title={title}
-                        frameBorder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                    ></iframe>
+                    {renderVideo()}
                 </div>
 
                 <div className="neuro-controls glass-morphism">

@@ -1,19 +1,19 @@
 :root {
-  /* Brand Palette from Logo */
-  --cademmy-orange: #FF7A00;
-  --cademmy-red-orange: #FF4D00;
-  --cademmy-yellow: #FFB800;
-  --cademmy-charcoal: #4D4D4D;
-  --cademmy-grey: #808080;
-  --cademmy-white: #FFFFFF;
+  /* Brand Palette - Official Cademmy Colors */
+  --cademmy-brown: #935144;
+  --cademmy-red: #F22E2E;
+  --cademmy-orange: #F2561D;
+  --cademmy-pink-red: #F22248;
+  --cademmy-dark-orange: #FF8C00;
+  --cademmy-yellow: #FFBA00;
 
   /* Neutrals */
-  --bg-color: var(--cademmy-white);
-  --text-color: var(--cademmy-charcoal);
-  --text-muted: var(--cademmy-grey);
+  --bg-color: #FFFFFF;
+  --text-color: #4D4D4D;
+  --text-muted: #808080;
 
   /* Fonts */
-  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Montserrat', sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -57,17 +57,17 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Sora', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-weight: 700;
 }
 
 /* Gradients for UI elements */
 .brand-gradient {
-  background: linear-gradient(135deg, var(--cademmy-orange) 0%, var(--cademmy-red-orange) 100%);
+  background: linear-gradient(135deg, var(--cademmy-orange) 0%, var(--cademmy-red) 100%);
 }
 
 .brand-gradient-hover {
-  background: linear-gradient(135deg, var(--cademmy-red-orange) 0%, var(--cademmy-orange) 100%);
+  background: linear-gradient(135deg, var(--cademmy-red) 0%, var(--cademmy-orange) 100%);
 }
 
 /* Global Animations */

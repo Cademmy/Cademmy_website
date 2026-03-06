@@ -3,6 +3,11 @@ import { useParams } from 'react-router-dom';
 import NeuroPlayer from '../components/NeuroPlayer';
 import SimuladorIA from '../components/SimuladorIA';
 import EvidenceBuilder from '../components/EvidenceBuilder';
+import QuizPlayer from '../components/QuizPlayer';
+import InteractiveMatch from '../components/InteractiveMatch';
+import ARVRPlaceholder from '../components/ARVRPlaceholder';
+import PDFReader from '../components/PDFReader';
+import NeuroCoachWidget from '../components/NeuroCoachWidget';
 import { LMSService, Course, Lesson } from '../services/lmsService';
 import { useUser } from '../context/UserContext';
 import './Aula.css';
@@ -12,40 +17,48 @@ const Aula: React.FC = () => {
     const { user } = useUser();
     const [course, setCourse] = useState<Course | null>(null);
     const [activeLesson, setActiveLesson] = useState<Lesson | null>(null);
-    const [progress, setProgress] = useState<any>({ completedLessons: {} });
+    const [progress, setProgress] = useState<any>({ completedLessons: {}, performanceMetrics: {} });
 
     useEffect(() => {
         const load = async () => {
-            // Mock data for Alumno Demo if courseId is ec0217
-            const mockCourse: Course = {
-                id: 'ec0217',
-                title: 'Certificación EC0217.01 - Impartición de Cursos',
-                lessons: [
-                    { id: 'l1', title: 'Introducción al Neuro-aprendizaje', videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ', duration: '10:00', asset_type: 'video' },
-                    { id: 'l2', title: 'Técnicas Instruccionales de Alto Impacto', videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ', duration: '15:20', asset_type: 'video' },
-                    { id: 'l3', title: 'Manejo de Grupos Difíciles', videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ', duration: '12:45', asset_type: 'video' },
-                    { id: 'm6', title: 'Módulo 6: Construcción de Portafolio', videoUrl: '', duration: 'Taller', asset_type: 'portfolio' },
-                    { id: 'm7', title: 'Módulo 7: Simulador de Evaluación', videoUrl: '', duration: 'Interactivo', asset_type: 'simulator' }
-                ]
-            };
+            if (!courseId) return;
 
-            setCourse(mockCourse);
-            setActiveLesson(mockCourse.lessons[0]);
+            try {
+                const realCourse = await LMSService.getCourseData(courseId);
+                if (realCourse) {
+                    setCourse(realCourse);
+                    setActiveLesson(realCourse.lessons[0]);
+                } else {
+                    // Fallback to mock only if not found
+                    const mockCourse: Course = {
+                        id: 'ec0217',
+                        title: 'Certificación EC0217.01 - Impartición de Cursos (Mock)',
+                        lessons: [
+                            { id: 'l1', title: 'Introducción al Neuro-aprendizaje', videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ', duration: '10:00', asset_type: 'video' },
+                        ]
+                    };
+                    setCourse(mockCourse);
+                    setActiveLesson(mockCourse.lessons[0]);
+                }
+            } catch (error) {
+                console.error("Error loading course:", error);
+            }
 
-            if (user) {
-                const prog = await LMSService.getUserProgress(user.uid, courseId || 'ec0217');
+            if (user && courseId) {
+                const prog = await LMSService.getUserProgress(user.uid, courseId);
                 setProgress(prog);
             }
         };
         load();
     }, [courseId, user]);
 
-    const handleComplete = async () => {
+    const handleComplete = async (performance?: any) => {
         if (user && activeLesson) {
-            await LMSService.completeLesson(user.uid, courseId || 'ec0217', activeLesson.id);
+            await LMSService.completeLesson(user.uid, courseId || 'ec0217', activeLesson.id, performance);
             setProgress((prev: any) => ({
                 ...prev,
-                completedLessons: { ...prev.completedLessons, [activeLesson.id]: true }
+                completedLessons: { ...prev.completedLessons, [activeLesson.id]: true },
+                performanceMetrics: { ...prev.performanceMetrics, [activeLesson.id]: performance || {} }
             }));
             alert("¡Lección completada! +25 CAD-Coins");
         }
@@ -59,13 +72,34 @@ const Aula: React.FC = () => {
                 return <EvidenceBuilder />;
             case 'simulator':
                 return <SimuladorIA />;
+            case 'quiz':
+                return <QuizPlayer
+                    questions={activeLesson.questions || []}
+                    onComplete={(score) => handleComplete({ score: (score / (activeLesson.questions?.length || 1)) * 100 })}
+                />;
+            case 'interactive':
+                return <InteractiveMatch
+                    pairs={activeLesson.pairs || []}
+                    onComplete={() => handleComplete({ score: 100 })}
+                />;
+            case 'ar_vr':
+                return <ARVRPlaceholder
+                    title={activeLesson.title}
+                    instructions={activeLesson.instructions}
+                    externalLink={activeLesson.external_link}
+                />;
+            case 'reading':
+                return <PDFReader
+                    url={activeLesson.pdfUrl || ''}
+                    onComplete={() => handleComplete({ score: 100 })}
+                />;
             case 'video':
             default:
                 return (
                     <NeuroPlayer
-                        videoUrl={activeLesson.videoUrl}
+                        videoUrl={activeLesson.videoUrl || ''}
                         title={activeLesson.title}
-                        onCompleted={handleComplete}
+                        onCompleted={() => handleComplete()}
                     />
                 );
         }
@@ -86,7 +120,7 @@ const Aula: React.FC = () => {
                             onClick={() => setActiveLesson(lesson)}
                         >
                             <span className="lesson-status">
-                                {progress.completedLessons[lesson.id] ? '✅' : '🔴'}
+                                {progress.completedLessons?.[lesson.id] ? '✅' : '🔴'}
                             </span>
                             <div className="lesson-info">
                                 <h4>{lesson.title}</h4>
@@ -103,6 +137,11 @@ const Aula: React.FC = () => {
                 </div>
                 {renderContent()}
             </main>
+
+            <NeuroCoachWidget
+                progress={progress}
+                currentLesson={activeLesson}
+            />
         </div>
     );
 };

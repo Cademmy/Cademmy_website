@@ -6,13 +6,13 @@ import { getFunctions } from "firebase/functions";
 
 // Configuración oficial de Cademmy Plataform
 const firebaseConfig = {
-    apiKey: "AIzaSyBxdANxynZXGNkdMXijCSWxj5XpP9zUZ5c",
-    authDomain: "cademmy-plataform.firebaseapp.com",
-    projectId: "cademmy-plataform",
-    storageBucket: "cademmy-plataform.firebasestorage.app",
-    messagingSenderId: "708624917713",
-    appId: "1:708624917713:web:9f2f84a0fa2d7f40d991f0",
-    measurementId: "G-873RTWCGVH"
+    apiKey: "AIzaSyAeArweHX9ddCF4kWnuOLx-nUyjRcePoyw",
+    authDomain: "cademmy-web-2026.firebaseapp.com",
+    projectId: "cademmy-web-2026",
+    storageBucket: "cademmy-web-2026.firebasestorage.app",
+    messagingSenderId: "834387833224",
+    appId: "1:834387833224:web:d75a4eabfe09d2e59d8a3d",
+    measurementId: "G-W9YV0B2TWP"
 };
 
 const app = initializeApp(firebaseConfig);

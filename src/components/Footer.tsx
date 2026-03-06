@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { CORPORATE_INFO } from '../constants/corporateInfo';
 import './Footer.css';
 
 const Footer: React.FC = () => {
@@ -15,13 +16,14 @@ const Footer: React.FC = () => {
                     <ul>
                         <li><Link to="/">Inicio</Link></li>
                         <li><Link to="/aviso-privacidad">Aviso de Privacidad</Link></li>
-                        <li><Link to="/certificaciones">Certificaciones</Link></li>
+                        <li><Link to="/certificacion">Certificaciones</Link></li>
                     </ul>
                 </div>
                 <div className="footer-section">
                     <h4>Contacto</h4>
-                    <p>WhatsApp: +52 56347094</p>
-                    <p>Email: contacto@cademmy.com</p>
+                    <p>Dirección: {CORPORATE_INFO.address}</p>
+                    <p>Teléfono: {CORPORATE_INFO.phone}</p>
+                    <p>Email: {CORPORATE_INFO.email}</p>
                 </div>
             </div>
             <div className="footer-bottom">
