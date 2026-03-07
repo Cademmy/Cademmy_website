@@ -1,10 +1,9 @@
 /**
  * geminiService.ts
- * Integración con la API de Gemini Pro para el Módulo "Arquitecto".
+ * Integración SEGURA con la API de Gemini Pro a través de Cloud Functions.
  */
-
-const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY || "AIzaSyC46ItNCIvMNJaJO4p5X1YZT6-QDxFV6FY";
-const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=${GEMINI_API_KEY}`;
+import { httpsCallable } from "firebase/functions";
+import { functions } from "../firebase/config";
 
 export interface ArchitectProject {
     title: string;
@@ -44,33 +43,24 @@ Debes devolver tu respuesta en DOS PARTES separadas por el delimitador "|||JSON_
 No incluyas markdown adicionales fuera del bloque de JSON después del delimitador.
 `;
 
+/**
+ * Llama a la Cloud Function segura para diseñar el proyecto.
+ */
 export const designProjectWithIA = async (userRequirement: string): Promise<ArchitectResponse> => {
     try {
-        const response = await fetch(GEMINI_URL, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                contents: [{
-                    parts: [{
-                        text: `${SYSTEM_PROMPT}\n\nREQUERIMIENTO DEL USUARIO: ${userRequirement}`
-                    }]
-                }]
-            })
+        const generateGeminiContent = httpsCallable(functions, 'generateGeminiContent');
+        
+        const result: any = await generateGeminiContent({
+            prompt: `REQUERIMIENTO DEL USUARIO: ${userRequirement}`,
+            systemInstruction: SYSTEM_PROMPT
         });
 
-        const data = await response.json();
-
-        if (!response.ok) {
-            throw new Error(data.error?.message || "Error en la API de Gemini");
-        }
-
-        const fullText = data.candidates[0].content.parts[0].text;
+        const fullText = result.data.text;
         const [chatPart, jsonPart] = fullText.split('|||JSON_DATA|||');
 
         let projectData: ArchitectProject | undefined;
         if (jsonPart) {
             try {
-                // Limpiar posibles bloques de markdown si Gemini los añade por error
                 const cleanJson = jsonPart.replace(/```json/g, '').replace(/```/g, '').trim();
                 projectData = JSON.parse(cleanJson);
             } catch (jsonErr) {
@@ -85,39 +75,31 @@ export const designProjectWithIA = async (userRequirement: string): Promise<Arch
         };
 
     } catch (error: any) {
-        console.error("Gemini Service Error:", error);
+        console.error("Gemini Cloud Function Error:", error);
         return {
             success: false,
-            chatText: "Lo siento, tuve un problema al procesar tu arquitectura. Intenta de nuevo.",
+            chatText: "Lo siento, tuve un problema al procesar tu arquitectura de forma segura. Intenta de nuevo.",
             error: error.message
         };
     }
 };
 
+/**
+ * Llama a la Cloud Function segura para roleplay genérico.
+ */
 export const roleplayWithAI = async (systemPrompt: string, userMessage: string): Promise<string> => {
     try {
-        const response = await fetch(GEMINI_URL, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                contents: [{
-                    parts: [{
-                        text: `${systemPrompt}\n\nMENSAJE DEL USUARIO: ${userMessage}`
-                    }]
-                }]
-            })
+        const generateGeminiContent = httpsCallable(functions, 'generateGeminiContent');
+        
+        const result: any = await generateGeminiContent({
+            prompt: `MENSAJE DEL USUARIO: ${userMessage}`,
+            systemInstruction: systemPrompt
         });
 
-        const data = await response.json();
-        if (!response.ok) {
-            console.error("Gemini API Error Detail:", data);
-            throw new Error(data.error?.message || `Error API: ${response.status}`);
-        }
-
-        return data.candidates[0].content.parts[0].text;
+        return result.data.text;
 
     } catch (error: any) {
-        console.error("Roleplay Error:", error);
+        console.error("Roleplay Cloud Function Error:", error);
         throw error;
     }
 };
