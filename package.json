@@ -1,5 +1,32 @@
 {
   "name": "cademmy-web",
+<<<<<<< HEAD
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -H 127.0.0.1 -p 3001",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "next": "14.2.32",
+    "pg": "8.13.1",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "stripe": "17.4.0"
+  },
+  "devDependencies": {
+    "@types/node": "22.10.2",
+    "@types/pg": "^8.18.0",
+    "@types/react": "18.3.14",
+    "@types/react-dom": "18.3.5",
+    "eslint": "8.57.1",
+    "eslint-config-next": "14.2.32",
+    "prettier": "3.4.2",
+    "typescript": "5.7.2"
+=======
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -33,5 +60,6 @@
     "eslint-plugin-react-refresh": "^0.4.7",
     "typescript": "^5.2.2",
     "vite": "^5.3.1"
+>>>>>>> main
   }
 }
