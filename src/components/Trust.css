@@ -1,0 +1,44 @@
+.trust-section {
+    padding: 5rem 5%;
+    background-color: #f9fafb;
+    text-align: center;
+}
+
+.trust-section h2 {
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+}
+
+.partners-placeholder {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin: 3rem 0;
+    flex-wrap: wrap;
+    opacity: 0.6;
+}
+
+.partner-item {
+    font-weight: 600;
+    color: var(--cademmy-grey);
+    border: 1px dashed var(--cademmy-grey);
+    padding: 1rem;
+}
+
+.final-cta {
+    margin-top: 5rem;
+    padding: 4rem 2rem;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.final-cta h3 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.final-cta p {
+    margin-bottom: 2rem;
+    color: var(--cademmy-grey);
+}

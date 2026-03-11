@@ -1,0 +1,300 @@
+.musica-ia-page {
+    padding-top: 80px;
+    background-color: #fbfbfb;
+}
+
+.musica-hero {
+    background: var(--cademmy-charcoal);
+    color: white;
+    padding: 8rem 0;
+    text-align: center;
+    position: relative;
+}
+
+.musica-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('https://www.transparenttextures.com/patterns/cubes.png');
+    opacity: 0.05;
+}
+
+.premium-label {
+    display: inline-block;
+    background: var(--cademmy-orange);
+    color: white;
+    padding: 0.5rem 1.2rem;
+    border-radius: 4px;
+    font-weight: 800;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 2rem;
+}
+
+.musica-hero h1 {
+    font-size: 3.5rem;
+    font-weight: 900;
+    margin-bottom: 1.5rem;
+}
+
+.musica-hero p {
+    font-size: 1.25rem;
+    max-width: 800px;
+    margin: 0 auto;
+    opacity: 0.8;
+    line-height: 1.6;
+}
+
+.library-section {
+    padding: 6rem 0;
+}
+
+.category-filters {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 4rem;
+    justify-content: center;
+}
+
+.category-btn {
+    padding: 0.8rem 2rem;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    background: white;
+    color: #64748b;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.category-btn.active,
+.category-btn:hover {
+    background: var(--cademmy-charcoal);
+    color: white;
+    border-color: var(--cademmy-charcoal);
+    transform: translateY(-2px);
+}
+
+.tracks-list {
+    background: white;
+    border-radius: 24px;
+    padding: 1rem;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+}
+
+.track-row {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    padding: 1.5rem 2rem;
+    border-bottom: 1px solid #f1f5f9;
+    gap: 2rem;
+    transition: background 0.3s ease;
+}
+
+.track-row:last-child {
+    border-bottom: none;
+}
+
+.track-row:hover {
+    background: #f8fafc;
+}
+
+.play-circle {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--cademmy-orange);
+    color: white;
+    border: none;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 4px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.play-circle:hover {
+    transform: scale(1.1);
+    background: var(--cademmy-red);
+}
+
+.track-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.track-header h3 {
+    font-size: 1.2rem;
+    color: var(--cademmy-charcoal);
+    margin: 0;
+}
+
+.track-badges {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.voice-badge {
+    background: #e3f2fd;
+    color: #1976d2;
+    font-size: 0.75rem;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+.category-tag {
+    font-size: 0.65rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+}
+
+.category-tag.creatividad {
+    background: #e0f2fe;
+    color: #0369a1;
+}
+
+.category-tag.concentración {
+    background: #f0fdf4;
+    color: #166534;
+}
+
+.category-tag.motivación {
+    background: #fff7ed;
+    color: #9a3412;
+}
+
+.track-info p {
+    color: #64748b;
+    font-size: 0.95rem;
+    margin: 0;
+}
+
+.track-meta {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    color: #94a3b8;
+    font-weight: 600;
+}
+
+.download-btn {
+    background: none;
+    border: none;
+    color: #94a3b8;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.download-btn:hover {
+    color: var(--cademmy-orange);
+}
+
+.differentiation {
+    margin-bottom: 6rem;
+}
+
+.diff-card {
+    background: var(--brand-gradient);
+    padding: 4rem;
+    border-radius: 30px;
+    color: white;
+}
+
+.diff-card h2 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    margin-bottom: 3rem;
+    text-align: center;
+}
+
+.diff-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+}
+
+.diff-grid h4 {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+}
+
+.diff-grid p {
+    opacity: 0.9;
+    line-height: 1.6;
+}
+
+.generated-track {
+    border-left-color: var(--cademmy-orange) !important;
+    background-color: rgba(243, 112, 33, 0.05) !important;
+}
+
+.user-badge {
+    background: var(--cademmy-orange);
+    color: var(--white);
+    font-size: 0.7rem;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-left: 10px;
+    vertical-align: middle;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.no-results {
+    padding: 3rem;
+    text-align: center;
+    color: #666;
+    font-style: italic;
+}
+
+.lyrics-details {
+    margin-top: 1rem;
+}
+
+.lyrics-details summary {
+    font-size: 0.85rem;
+    color: var(--cademmy-orange);
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.lyrics-details pre {
+    margin-top: 0.5rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    color: #666;
+    background: #fdf6f0;
+    padding: 1rem;
+    border-radius: 8px;
+    white-space: pre-wrap;
+}
+
+@media (max-width: 768px) {
+    .track-row {
+        grid-template-columns: 1fr;
+        text-align: center;
+        justify-items: center;
+    }
+
+    .track-header {
+        flex-direction: column;
+    }
+
+    .diff-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+}

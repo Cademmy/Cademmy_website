@@ -1,0 +1,88 @@
+:root {
+  /* Brand Palette - Official Cademmy Colors */
+  --cademmy-brown: #935144;
+  --cademmy-red: #F22E2E;
+  --cademmy-orange: #F2561D;
+  --cademmy-pink-red: #F22248;
+  --cademmy-dark-orange: #FF8C00;
+  --cademmy-yellow: #FFBA00;
+
+  /* Neutrals */
+  --bg-color: #FFFFFF;
+  --text-color: #4D4D4D;
+  --text-muted: #808080;
+
+  /* Fonts */
+  font-family: 'Montserrat', sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* --- ADN Visual: Profesional --- */
+.app-container.profile-professional {
+  --cademmy-orange: #FF7A00;
+  --bg-color: #ffffff;
+  --text-color: #2D3748;
+}
+
+/* --- ADN Visual: Empresa --- */
+.app-container.profile-company {
+  --cademmy-orange: #FF4D00;
+  /* Un rojo-naranja más intenso/serio */
+  --bg-color: #F8FAFC;
+  /* Un fondo ligeramente azulado/grisáceo más corporativo */
+  --text-color: #1A202C;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  min-height: 100vh;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+}
+
+/* Gradients for UI elements */
+.brand-gradient {
+  background: linear-gradient(135deg, var(--cademmy-orange) 0%, var(--cademmy-red) 100%);
+}
+
+.brand-gradient-hover {
+  background: linear-gradient(135deg, var(--cademmy-red) 0%, var(--cademmy-orange) 100%);
+}
+
+/* Global Animations */
+.animate-fade-in {
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

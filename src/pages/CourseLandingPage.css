@@ -1,0 +1,282 @@
+.course-landing-page {
+    font-family: 'Inter', sans-serif;
+    color: var(--cademmy-charcoal);
+}
+
+.landing-hero {
+    padding: 8rem 0;
+    color: white;
+    text-align: left;
+    margin-top: -20px;
+}
+
+.hero-content {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 5rem;
+    align-items: center;
+}
+
+.hero-text h1 {
+    font-size: 3.8rem;
+    font-weight: 900;
+    margin: 1rem 0;
+    line-height: 1.1;
+    letter-spacing: -2px;
+}
+
+.tagline {
+    font-size: 1.5rem;
+    opacity: 0.95;
+    margin-bottom: 3rem;
+    line-height: 1.4;
+}
+
+.hero-actions {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.hero-video-box {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    padding: 1.2rem;
+    border-radius: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+}
+
+.video-wrapper {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    border-radius: 24px;
+    overflow: hidden;
+    background: #000;
+}
+
+.video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.trust-bar {
+    padding: 4rem 0;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.trust-stats {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+}
+
+.stat {
+    font-size: 1.1rem;
+    color: #64748b;
+    font-weight: 600;
+}
+
+.stat span {
+    display: block;
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: var(--cademmy-orange);
+    margin-bottom: 0.5rem;
+}
+
+.problem-solution {
+    padding: 7rem 0;
+}
+
+.neuromarking-copy h2 {
+    font-size: 3rem;
+    margin-bottom: 2rem;
+    font-weight: 800;
+}
+
+.model-aida {
+    font-size: 1.3rem;
+    line-height: 1.8;
+    color: #475569;
+    max-width: 900px;
+    margin-bottom: 4rem;
+    white-space: pre-line;
+}
+
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2.5rem;
+}
+
+.benefit-card {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 28px;
+    display: flex;
+    gap: 1.2rem;
+    align-items: flex-start;
+    border: 1px solid #f1f5f9;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.02);
+    transition: transform 0.3s ease;
+}
+
+.benefit-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--cademmy-orange);
+}
+
+.benefit-card .check {
+    background: var(--cademmy-orange);
+    color: white;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: 900;
+    font-size: 0.8rem;
+    flex-shrink: 0;
+}
+
+.curriculum-section {
+    padding: 7rem 0;
+    background: #f8fafc;
+}
+
+.curriculum-section h3 {
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    text-align: center;
+}
+
+.curriculum-list {
+    background: white;
+    border-radius: 32px;
+    border: 1px solid #e2e8f0;
+    overflow: hidden;
+    max-width: 900px;
+    margin: 0 auto;
+    box-shadow: 0 20px 40px rgba(15, 23, 42, 0.05);
+}
+
+.lesson-item {
+    display: flex;
+    gap: 2.5rem;
+    padding: 2rem 3rem;
+    border-bottom: 1px solid #f1f5f9;
+    align-items: center;
+}
+
+.lesson-num {
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: #e2e8f0;
+    min-width: 40px;
+}
+
+.lesson-info h4 {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+    color: var(--cademmy-charcoal);
+}
+
+.lesson-meta {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.audience-section {
+    padding: 6rem 0;
+    color: white;
+    text-align: center;
+}
+
+.audience-section h3 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.audience-section p {
+    font-size: 1.4rem;
+    max-width: 800px;
+    margin: 0 auto;
+    opacity: 0.9;
+}
+
+.final-cta {
+    padding: 10rem 0;
+    text-align: center;
+}
+
+.cta-box {
+    background: white;
+    padding: 6rem 4rem;
+    border-radius: 60px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.05);
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.price-tag {
+    font-size: 4rem;
+    font-weight: 950;
+    margin: 2.5rem 0;
+    color: var(--cademmy-charcoal);
+    letter-spacing: -2px;
+}
+
+.large {
+    padding: 1.5rem 4rem;
+    font-size: 1.3rem;
+    border-radius: 20px;
+}
+
+.guarantee {
+    margin-top: 2rem;
+    color: #94a3b8;
+    font-weight: 600;
+}
+
+.white-btn {
+    background: white !important;
+    color: var(--cademmy-orange) !important;
+}
+
+.secondary-link {
+    color: white;
+    text-decoration: none;
+    font-weight: 700;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+    padding-bottom: 4px;
+    transition: all 0.2s;
+}
+
+.secondary-link:hover {
+    border-color: white;
+}
+
+@media (max-width: 1024px) {
+    .hero-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .hero-actions {
+        justify-content: center;
+    }
+
+    .hero-text h1 {
+        font-size: 3rem;
+    }
+}

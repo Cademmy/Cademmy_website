@@ -1,0 +1,231 @@
+.tv-page {
+    padding-top: 80px;
+}
+
+.tv-hero {
+    background: var(--cademmy-charcoal);
+    color: white;
+    padding: 6rem 0;
+    position: relative;
+}
+
+.tv-hero .live-badge {
+    background: var(--cademmy-red);
+    padding: 0.4rem 1rem;
+    border-radius: 4px;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    display: inline-block;
+    margin-bottom: 2rem;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.6;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.tv-hero h1 {
+    font-size: 4rem;
+    font-weight: 900;
+    margin-bottom: 1.5rem;
+}
+
+.tv-hero p {
+    font-size: 1.2rem;
+    max-width: 600px;
+    opacity: 0.9;
+    margin-bottom: 2.5rem;
+    line-height: 1.6;
+}
+
+.video-explorer {
+    padding: 6rem 0;
+    background: #f8fafc;
+}
+
+.filter-bar {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 4rem;
+    flex-wrap: wrap;
+}
+
+.filter-chip {
+    padding: 0.7rem 1.8rem;
+    border-radius: 50px;
+    border: 1px solid #e2e8f0;
+    background: white;
+    color: #64748b;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.filter-chip.active,
+.filter-chip:hover {
+    background: var(--cademmy-orange);
+    color: white;
+    border-color: var(--cademmy-orange);
+    transform: translateY(-2px);
+}
+
+.video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2.5rem;
+}
+
+.video-card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.video-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.thumbnail-container {
+    position: relative;
+    aspect-ratio: 16/9;
+    overflow: hidden;
+}
+
+.thumbnail-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.video-card:hover .thumbnail-container img {
+    transform: scale(1.05);
+}
+
+.duration {
+    position: absolute;
+    bottom: 0.8rem;
+    right: 0.8rem;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.play-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.video-card:hover .play-overlay {
+    opacity: 1;
+}
+
+.play-icon {
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--cademmy-orange);
+    font-size: 1.5rem;
+    padding-left: 4px;
+}
+
+.video-info {
+    padding: 1.5rem;
+}
+
+.video-info .category {
+    color: var(--cademmy-orange);
+    font-weight: 700;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.video-info h3 {
+    font-size: 1.15rem;
+    color: var(--cademmy-charcoal);
+    line-height: 1.4;
+    margin: 0;
+}
+
+.featured-series {
+    padding-bottom: 6rem;
+    background: #f8fafc;
+}
+
+.series-banner {
+    background: linear-gradient(100deg, var(--cademmy-red) 0%, var(--cademmy-orange) 100%);
+    border-radius: 30px;
+    padding: 4rem;
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.series-banner::after {
+    content: 'TV';
+    position: absolute;
+    right: -20px;
+    bottom: -20px;
+    font-size: 15rem;
+    font-weight: 900;
+    opacity: 0.1;
+}
+
+.series-text {
+    max-width: 500px;
+    position: relative;
+    z-index: 1;
+}
+
+.series-text h2 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+}
+
+.series-text p {
+    font-size: 1.1rem;
+    margin-bottom: 2.5rem;
+    line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+    .tv-hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .series-banner {
+        padding: 2.5rem;
+    }
+}
