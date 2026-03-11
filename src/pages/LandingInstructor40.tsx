@@ -17,6 +17,15 @@ const LandingInstructor40 = () => {
     localStorage.setItem('theme', theme);
   }, [theme]);
 
+  useEffect(() => {
+    if (formData.preferencia === 'Llamada de un ejecutivo') {
+      const bookingElement = document.querySelector('.booking-container');
+      if (bookingElement) {
+        bookingElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }
+  }, [formData.preferencia]);
+
   const toggleTheme = () => {
     setTheme(prev => prev === 'light' ? 'dark' : 'light');
   };
@@ -386,7 +395,7 @@ const LandingInstructor40 = () => {
                 <div>
                   <label className="input-label" htmlFor="preferencia">Medio de comunicación preferido</label>
                   <select className="select-field" id="preferencia" name="preferencia" value={formData.preferencia} onChange={handleInputChange}>
-                    <option value="WattsAPP">WattsAPP</option>
+                    <option value="WhatsApp">WhatsApp</option>
                     <option value="Correo Electrónico">Correo Electrónico</option>
                     <option value="ChatBot">ChatBot</option>
                     <option value="Llamada de un ejecutivo">Llamada de un ejecutivo</option>
