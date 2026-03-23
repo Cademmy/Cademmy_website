@@ -1,3 +1,13 @@
+<<<<<<< HEAD
+node_modules
+.next
+out
+.env*
+!.env.example
+.DS_Store
+coverage
+tsconfig.tsbuildinfo
+=======
 # Logs
 logs
 *.log
@@ -115,3 +125,4 @@ dist
 
 # Mac
 .DS_Store
+>>>>>>> main
