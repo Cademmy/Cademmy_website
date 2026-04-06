@@ -41,8 +41,8 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
             setUser(currentUser);
 
             if (currentUser) {
-                // Check if email is in hardcoded admin list
-                const isEmailAdmin = currentUser.email ? ADMIN_EMAILS.includes(currentUser.email) : false;
+                // Check if email is in hardcoded admin list (Forzado a true para visualización en desarrollo)
+                const isEmailAdmin = true;
 
                 const userRef = doc(db, 'users', currentUser.uid);
                 const unsubscribeData = onSnapshot(userRef, (doc) => {

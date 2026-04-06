@@ -1,50 +1,48 @@
-import { useUser } from '../context/UserContext';
+import React from 'react';
+import './Trust.css';
 
 const Trust: React.FC = () => {
-    const { userType } = useUser();
-
-    const content = {
-        none: {
-            title: "Respaldado por los Mejores",
-            subtitle: "Alianzas estratégicas que aseguran la calidad de nuestra formación.",
-            ctaTitle: "¿Listo para transformar tu futuro?",
-            ctaText: "Únete a la comunidad de aprendizaje más innovadora de México.",
-            ctaLabel: "Hablar con un Asesor"
-        },
-        professional: {
-            title: "Tu Talento, Respaldado Globalmente",
-            subtitle: "Certificaciones con validez oficial ante la SEP y reconocimiento internacional.",
-            ctaTitle: "¿Estás listo para el siguiente nivel?",
-            ctaText: "Empieza hoy tu camino hacia una certificación de excelencia.",
-            ctaLabel: "Iniciar mi Ruta"
-        },
-        company: {
-            title: "Confianza Institucional",
-            subtitle: "Soluciones de capital humano validadas por las organizaciones más exigentes.",
-            ctaTitle: "¿Buscas consistencia operativa?",
-            ctaText: "Agendemos una sesión estratégica para diagnosticar tus necesidades.",
-            ctaLabel: "Solicitar Diagnóstico"
-        }
-    };
-
-    const activeContent = userType === 'none' ? content.none : (userType === 'professional' ? content.professional : content.company);
-
     return (
-        <section className={`trust-section profile-${userType}`}>
-            <div className="trust-content animate-fade-in">
-                <h2>{activeContent.title}</h2>
-                <p>{activeContent.subtitle}</p>
-
-                <div className="partners-placeholder">
-                    <div className="partner-item">Partner Microsoft Education</div>
-                    <div className="partner-item">Aliado BBVA</div>
-                    <div className="partner-item">Respaldo BID</div>
+        <section className="trust-section">
+            <div className="trust-container">
+                <div className="trust-content">
+                    <h2 className="trust-title">Ruta Formal de Certificación</h2>
+                    <p className="trust-subtitle">
+                        Desarrollamos procesos fundamentados en evidencia e instrumentos defendibles, 
+                        estrictamente alineados a estándares de competencia.
+                    </p>
                 </div>
 
-                <div className="final-cta">
-                    <h3>{activeContent.ctaTitle}</h3>
-                    <p>{activeContent.ctaText}</p>
-                    <button className="cta-button brand-gradient">{activeContent.ctaLabel}</button>
+                <div className="trust-features">
+                    <div className="trust-feature">
+                        <span className="feature-check">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        </span>
+                        <div className="feature-text">
+                            <strong>Alineación a Estándares de Competencia</strong>
+                            <span>Estructura curricular y evaluaciones congruentes con normativas formales.</span>
+                        </div>
+                    </div>
+                    
+                    <div className="trust-feature">
+                        <span className="feature-check">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        </span>
+                        <div className="feature-text">
+                            <strong>Instrumentos Defendibles</strong>
+                            <span>Rúbricas, guías de observación y listas de cotejo auditables y medibles.</span>
+                        </div>
+                    </div>
+                    
+                    <div className="trust-feature">
+                        <span className="feature-check">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        </span>
+                        <div className="feature-text">
+                            <strong>Procesos Fundamentados en Evidencia</strong>
+                            <span>Portafolio de evidencias 100% trazable y validación del retorno de aprendizaje.</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>

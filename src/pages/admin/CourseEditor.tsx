@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Course, Lesson, LMSService } from '../../services/lmsService';
+import { MaterialAIService } from '../../services/materialAIService';
 import './Admin.css';
 
 const CourseEditor: React.FC = () => {
@@ -10,6 +11,8 @@ const CourseEditor: React.FC = () => {
     const [loading, setLoading] = useState(true);
     const [activeTab, setActiveTab] = useState<'content' | 'marketing'>('content');
     const [generatingAI, setGeneratingAI] = useState(false);
+    const [isOrganizing, setIsOrganizing] = useState(false);
+    const [organizeProgress, setOrganizeProgress] = useState('');
 
     useEffect(() => {
         const load = async () => {
@@ -66,6 +69,35 @@ const CourseEditor: React.FC = () => {
             alert("Cambios guardados con éxito.");
         } catch (error: any) {
             alert("Error al guardar: " + error.message);
+        }
+    };
+
+    const handleSmartUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (!e.target.files || e.target.files.length === 0 || !course) return;
+        const files = Array.from(e.target.files);
+        
+        setIsOrganizing(true);
+        setOrganizeProgress('Cargando archivos a la nube...');
+        try {
+            const uploadedMeta = await MaterialAIService.uploadFiles(course.id, files, (progresses) => {
+                 const avg = progresses.reduce((acc, p) => acc + p.progress, 0) / progresses.length;
+                 setOrganizeProgress(`Subiendo... ${Math.round(avg)}%`);
+            });
+            
+            setOrganizeProgress('🧠 IA analizando contenido y esquemas...');
+            const newLessons = await MaterialAIService.organizeMaterialsWithAI(course.title, uploadedMeta);
+            
+            setCourse(prev => {
+                 if (!prev) return prev;
+                 return { ...prev, lessons: [...prev.lessons, ...newLessons] };
+            });
+            alert('Material subido y estructurado en unidades con éxito.');
+        } catch (error: any) {
+            alert("Error en la subida inteligente: " + error.message);
+        } finally {
+            setIsOrganizing(false);
+            setOrganizeProgress('');
+            e.target.value = ''; // Reset input
         }
     };
 
@@ -145,6 +177,15 @@ const CourseEditor: React.FC = () => {
                             <button onClick={() => addUnit('interactive')}>🧩 Interact</button>
                             <button onClick={() => addUnit('reading')}>📖 Lectura</button>
                             <button onClick={() => addUnit('ar_vr')}>🥽 AR/VR</button>
+                        </div>
+                        
+                        <div className="smart-upload-area" style={{ marginTop: '20px', padding: '15px', background: '#f8f9ff', borderRadius: '12px', border: '1px dashed #4f46e5' }}>
+                            <h4 style={{ color: '#4f46e5', marginBottom: '10px' }}>Organización con Inteligencia Artificial</h4>
+                            <label className={`smart-upload-btn btn cta-button ${isOrganizing ? 'disabled' : ''}`} style={{ display: 'block', textAlign: 'center', cursor: isOrganizing ? 'not-allowed' : 'pointer', background: isOrganizing ? '#a5b4fc' : '#4f46e5', color: 'white', padding: '10px', borderRadius: '8px' }}>
+                                {isOrganizing ? organizeProgress : '🚀 Subir Materiales Múltiples (IA)'}
+                                <input type="file" multiple hidden disabled={isOrganizing} onChange={handleSmartUpload} />
+                            </label>
+                            <p className="field-hint" style={{ fontSize: '0.8rem', marginTop: '10px', textAlign: 'center' }}>Admite esquemas, Word, PPT, PDF, MP4, MP3, Imágenes. La IA inferirá el propósito y creará las unidades.</p>
                         </div>
                     </div>
                 </aside>

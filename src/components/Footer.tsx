@@ -1,74 +1,63 @@
-<<<<<<< HEAD
-import Link from "next/link";
-
-import { Container } from "@/components/Container";
+import { Link } from "react-router-dom";
+import './Footer.css';
+import logo from '../assets/cademmy-logo.jpg';
 
 export function Footer() {
   return (
-    <footer className="site-footer">
-      <Container className="footer-grid">
-        <div>
-          <p className="brand">Cademmy</p>
-          <p>Consultoría, formación y certificación para acelerar resultados.</p>
+    <footer className="cademmy-footer">
+      <div className="footer-container">
+        <div className="footer-top">
+          <div className="footer-brand">
+            <img src={logo} alt="Cademmy" className="footer-logo" />
+            <p className="footer-description">
+              Formación 4.0, consultoría B2B y diseño de procesos alineados a estándares de competencia.
+            </p>
+          </div>
+          
+          <div className="footer-links-group">
+            <h4 className="footer-title">Plataforma</h4>
+            <ul className="footer-list">
+              <li><Link to="/diagnostico-rh">Diagnóstico RH</Link></li>
+              <li><Link to="/certificacion">Instructor 4.0</Link></li>
+              <li><Link to="/consultoria">Consultoría B2B</Link></li>
+              <li><Link to="/ia-lab">IA Lab</Link></li>
+            </ul>
+          </div>
+
+          <div className="footer-links-group">
+            <h4 className="footer-title">Legal</h4>
+            <ul className="footer-list">
+              <li><Link to="/aviso-privacidad">Aviso de Privacidad</Link></li>
+              <li><Link to="/legal/terminos">Términos y Condiciones</Link></li>
+              <li><Link to="/legal/reembolsos">Reembolsos</Link></li>
+            </ul>
+          </div>
+
+          <div className="footer-links-group">
+            <h4 className="footer-title">Contacto</h4>
+            <ul className="footer-list contact-list">
+              <li>contacto@cademmy.com</li>
+              <li>+52 55 52 93 9203</li>
+              <li>Av. Santa Fe 505 Mezanine Of 2B<br />Santa Fe, Cuajimalpa, CDMX<br />CP 01219</li>
+            </ul>
+          </div>
+      </div>
+
+        <div className="footer-bottom">
+          <div className="footer-bottom-content">
+            <div>
+              <p style={{ marginBottom: '0.4rem', color: '#64748b' }}>&copy; {new Date().getFullYear()} Cademmy. Todos los derechos reservados.</p>
+              <p style={{ fontSize: '0.85rem', color: '#334155', fontWeight: 600 }}>Centro Evaluador Oficial: CE1298-OC063-18 · CADEMMY LEARNING SAS</p>
+            </div>
+            <div className="footer-socials">
+              <a href="#" aria-label="LinkedIn">IN</a>
+              <a href="#" aria-label="Twitter">TW</a>
+            </div>
+          </div>
         </div>
-        <div>
-          <p className="footer-title">Legal</p>
-          <ul>
-            <li>
-              <Link href="/legal/privacidad">Aviso de privacidad</Link>
-            </li>
-            <li>
-              <Link href="/legal/terminos">Términos y condiciones</Link>
-            </li>
-            <li>
-              <Link href="/legal/reembolsos-cancelaciones">Reembolsos y cancelaciones</Link>
-            </li>
-          </ul>
-        </div>
-        <div>
-          <p className="footer-title">Contacto</p>
-          <p>hola@cademmy.com</p>
-          <p>Ciudad de México, MX</p>
-        </div>
-      </Container>
+      </div>
     </footer>
   );
 }
-=======
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { CORPORATE_INFO } from '../constants/corporateInfo';
-import './Footer.css';
-
-const Footer: React.FC = () => {
-    return (
-        <footer className="footer">
-            <div className="footer-content">
-                <div className="footer-section">
-                    <h3>Cademmy Learning</h3>
-                    <p>Potenciando la educación 4.0 y certificaciones con validez oficial.</p>
-                </div>
-                <div className="footer-section">
-                    <h4>Enlaces</h4>
-                    <ul>
-                        <li><Link to="/">Inicio</Link></li>
-                        <li><Link to="/aviso-privacidad">Aviso de Privacidad</Link></li>
-                        <li><Link to="/certificacion">Certificaciones</Link></li>
-                    </ul>
-                </div>
-                <div className="footer-section">
-                    <h4>Contacto</h4>
-                    <p>Dirección: {CORPORATE_INFO.address}</p>
-                    <p>Teléfono: {CORPORATE_INFO.phone}</p>
-                    <p>Email: {CORPORATE_INFO.email}</p>
-                </div>
-            </div>
-            <div className="footer-bottom">
-                <p>&copy; {new Date().getFullYear()} Cademmy Learning. Todos los derechos reservados.</p>
-            </div>
-        </footer>
-    );
-};
 
 export default Footer;
->>>>>>> main

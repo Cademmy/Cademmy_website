@@ -8,6 +8,14 @@ const HomeChoice: React.FC = () => {
 
     return (
         <section className="home-choice-section animate-fade-in">
+            <div style={{ textAlign: 'center', marginBottom: '3rem', padding: '0 20px' }}>
+                <h1 style={{ fontSize: '2.5rem', fontWeight: 700, color: '#0f172a', marginBottom: '1rem', fontFamily: 'Montserrat, sans-serif' }}>
+                    Estandariza la capacitación interna de tu equipo y obtén evidencia defendible.
+                </h1>
+                <p style={{ fontSize: '1.2rem', color: '#64748b', maxWidth: '800px', margin: '0 auto', fontWeight: 500, fontFamily: 'Montserrat, sans-serif' }}>
+                    Procesos formativos fundamentados en evidencia y alineados a estándares de competencia.
+                </p>
+            </div>
             <div className="choice-container">
                 <div className="choice-card professional" onClick={() => setUserType('professional')}>
                     <div className="choice-icon">👤</div>
