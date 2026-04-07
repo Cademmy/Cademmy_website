@@ -19,23 +19,24 @@ const PublicNavbar: React.FC = () => {
             </div>
 
             <ul className="navbar-links">
-                <li className="nav-dropdown">
-                    <span className="dropdown-trigger">Soluciones</span>
-                    <ul className="dropdown-menu">
-                        <li><Link to="/diagnostico-rh">Diagnóstico RH</Link></li>
-                        <li><Link to="/certificacion">Formador 4.0</Link></li>
-                        <li><Link to="/consultoria">Consultoría</Link></li>
-                        <li><Link to="/ia-lab">IA Lab</Link></li>
-                    </ul>
-                </li>
                 <li><Link to="/empresas">Empresas</Link></li>
-                <li><Link to="/certificacion">Instructores</Link></li>
+                <li><Link to="/formador-4-0">Instructores</Link></li>
                 <li className="nav-dropdown">
                     <span className="dropdown-trigger">Recursos</span>
                     <ul className="dropdown-menu">
+                        <li className="dropdown-category-title">Contenido</li>
                         <li><Link to="/blog">Blog</Link></li>
-                        <li><Link to="/cademmy-tv">Cademmy TV</Link></li>
                         <li><Link to="/podcast">Podcast</Link></li>
+                        <li><Link to="/cademmy-tv">Cademmy TV</Link></li>
+                        <li><Link to="/webinars">Webinars</Link></li>
+                        
+                        <li className="dropdown-category-title">Herramientas</li>
+                        <li><Link to="/creador-objetivos">Creador de Objetivos</Link></li>
+                        <li><Link to="/aprendizaje">Catálogo de Cursos</Link></li>
+                        
+                        <li className="dropdown-category-title">Materiales</li>
+                        <li><Link to="/recursos">Dinámicas</Link></li>
+                        <li><Link to="/ia-lab">Música IA</Link></li>
                     </ul>
                 </li>
                 <li><Link to="/contacto">Nosotros / Contacto</Link></li>

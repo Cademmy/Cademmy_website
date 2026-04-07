@@ -18,9 +18,12 @@ const LandingEmpresas: React.FC = () => {
                         <p className="empresas-hero-subtitle animate-fade-in" style={{ animationDelay: '0.1s' }}>
                             Reduce la variabilidad en la formación impartida por tus expertos (SMEs) y profesionaliza a tus instructores con una metodología técnica alineada a estándares de competencia.
                         </p>
-                        <div className="empresas-hero-actions animate-fade-in" style={{ animationDelay: '0.2s' }}>
+                        <div className="empresas-hero-actions animate-fade-in" style={{ animationDelay: '0.2s', display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
                             <button className="cta-button brand-gradient" onClick={() => navigate('/diagnostico-rh')}>
                                 Solicitar Diagnóstico
+                            </button>
+                            <button className="cta-button outline-dark" onClick={() => navigate('/consultoria')} style={{ background: 'transparent', border: '2px solid var(--cademmy-charcoal)', color: 'var(--cademmy-charcoal)' }}>
+                                Ver Consultoría
                             </button>
                         </div>
                     </div>
