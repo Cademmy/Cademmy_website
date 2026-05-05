@@ -3,8 +3,9 @@ import Script from "next/script";
 import { ReactNode } from "react";
 
 import "@/app/globals.css";
-import { Footer } from "@/components/Footer";
-import { Header } from "@/components/Header";
+import { AuthProvider } from "@/mvp-components/AuthProvider";
+import { Footer } from "@/mvp-components/Footer";
+import { Header } from "@/mvp-components/Header";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 const gaId = process.env.NEXT_PUBLIC_GA_ID;
@@ -12,10 +13,16 @@ const gaId = process.env.NEXT_PUBLIC_GA_ID;
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Cademmy | Consultoría, Capacitación y Certificación",
+    default: "Cademmy | Soluciones de aprendizaje, certificacion y consultoria",
     template: "%s | Cademmy"
   },
-  description: "Impulsamos resultados con consultoría, formación, certificación y soluciones de talento.",
+  description:
+    "Cademmy integra cursos, certificaciones y consultoria profesional en una cuenta unica para transformar capacidades en resultados medibles.",
+  icons: {
+    icon: "/favicon.png",
+    shortcut: "/favicon.png",
+    apple: "/favicon.png"
+  },
   alternates: {
     canonical: "/",
     languages: {
@@ -46,9 +53,11 @@ export default function RootLayout({
             </Script>
           </>
         )}
-        <Header />
-        <main>{children}</main>
-        <Footer />
+        <AuthProvider>
+          <Header />
+          <main className="site-main">{children}</main>
+          <Footer />
+        </AuthProvider>
       </body>
     </html>
   );

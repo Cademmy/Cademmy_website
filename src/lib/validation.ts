@@ -1,4 +1,4 @@
-import { LeadInput } from "@/lib/types";
+import { DiagnosisAnswers, LeadInput, LEAD_KINDS } from "@/lib/types";
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -19,6 +19,7 @@ export function validateLeadInput(payload: unknown): { valid: true; value: LeadI
     "challenge_summary",
     "preferred_language",
     "consent_checkbox",
+    "source",
     "utm"
   ];
 
@@ -36,6 +37,16 @@ export function validateLeadInput(payload: unknown): { valid: true; value: LeadI
     return { valid: false, error: "Debes aceptar el aviso de privacidad" };
   }
 
+  const lead_kind =
+    typeof data.lead_kind === "string" && LEAD_KINDS.includes(data.lead_kind as (typeof LEAD_KINDS)[number])
+      ? data.lead_kind
+      : "contact";
+
+  const diagnosis = parseDiagnosisPayload(data.diagnosis);
+  if (lead_kind === "diagnosis" && !diagnosis?.answers) {
+    return { valid: false, error: "El diagnóstico requiere respuestas completas." };
+  }
+
   return {
     valid: true,
     value: {
@@ -51,7 +62,50 @@ export function validateLeadInput(payload: unknown): { valid: true; value: LeadI
       preferred_language: String(data.preferred_language),
       consent_checkbox: Boolean(data.consent_checkbox),
       captcha_token: data.captcha_token ? String(data.captcha_token) : undefined,
-      utm: typeof data.utm === "object" && data.utm ? data.utm : {}
+      lead_kind,
+      source: String(data.source),
+      utm: typeof data.utm === "object" && data.utm ? data.utm : {},
+      metadata: typeof data.metadata === "object" && data.metadata ? (data.metadata as Record<string, unknown>) : undefined,
+      diagnosis
     }
+  };
+}
+
+function parseDiagnosisPayload(input: unknown): LeadInput["diagnosis"] | undefined {
+  if (!input || typeof input !== "object") return undefined;
+
+  const source = input as {
+    answers?: Partial<DiagnosisAnswers>;
+    result?: LeadInput["diagnosis"] extends { result?: infer TResult } ? TResult : never;
+  };
+
+  if (!source.answers || typeof source.answers !== "object") return undefined;
+
+  const answers = source.answers;
+  const keys: Array<keyof DiagnosisAnswers> = [
+    "role",
+    "company_size",
+    "instructors_type",
+    "transfer_verification",
+    "onboarding_speed",
+    "variability_pain",
+    "budget_range"
+  ];
+
+  for (const key of keys) {
+    if (!answers[key]) return undefined;
+  }
+
+  return {
+    answers: {
+      role: String(answers.role),
+      company_size: String(answers.company_size),
+      instructors_type: String(answers.instructors_type),
+      transfer_verification: String(answers.transfer_verification),
+      onboarding_speed: String(answers.onboarding_speed),
+      variability_pain: String(answers.variability_pain),
+      budget_range: String(answers.budget_range)
+    },
+    result: source.result
   };
 }

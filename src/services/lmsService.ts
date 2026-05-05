@@ -182,7 +182,10 @@ export const LMSService = {
         try {
             // Reutilizamos el servicio de Gemini si está disponible, o hacemos fetch directo
             // Para mantener consistencia con geminiService.ts:
-            const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY || "AIzaSyC46ItNCIvMNJaJO4p5X1YZT6-QDxFV6FY";
+            const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
+            if (!GEMINI_API_KEY) {
+                throw new Error("Falta VITE_GEMINI_API_KEY");
+            }
             const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=${GEMINI_API_KEY}`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },

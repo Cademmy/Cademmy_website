@@ -3,11 +3,20 @@
 import { FormEvent, useEffect, useMemo, useState } from "react";
 
 import { EVENTS, trackEvent } from "@/lib/analytics";
+import { LEAD_SERVICE_OPTIONS } from "@/lib/constants";
+import { LeadKind } from "@/lib/types";
 import { captureUTMData, readUTMData } from "@/lib/utm";
+import { TurnstileWidget } from "@/mvp-components/TurnstileWidget";
 
 type Props = {
-  variant?: "default" | "enterprise";
   title?: string;
+  intro?: string;
+  leadKind?: LeadKind;
+  source?: string;
+  defaultServiceInterest?: string;
+  submitLabel?: string;
+  challengeLabel?: string;
+  metadata?: Record<string, unknown>;
 };
 
 type LeadPayload = {
@@ -24,21 +33,32 @@ type LeadPayload = {
   consent_checkbox: boolean;
   website?: string;
   captcha_token?: string;
+  lead_kind: LeadKind;
+  source: string;
   utm: Record<string, string | undefined>;
+  metadata?: Record<string, unknown>;
 };
 
-const SERVICE_OPTIONS = [
-  "Consultoría",
-  "Capacitación y Coaching",
-  "Cursos en Línea",
-  "Certificación de Competencias",
-  "Talento y Capital Humano",
-  "Learn Hub"
-];
-
-export function LeadForm({ variant = "default", title = "Hablemos de tu proyecto" }: Props) {
+export function LeadForm({
+  title = "Hablemos de tu proyecto",
+  intro,
+  leadKind = "contact",
+  source = "website_form",
+  defaultServiceInterest = "Cademmy Consulting",
+  submitLabel,
+  challengeLabel = "Reto principal",
+  metadata
+}: Props) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [captchaResetSignal, setCaptchaResetSignal] = useState(0);
+  const serviceOptions = useMemo(() => {
+    const options = [...LEAD_SERVICE_OPTIONS] as string[];
+    if (defaultServiceInterest && !options.includes(defaultServiceInterest)) {
+      options.unshift(defaultServiceInterest);
+    }
+    return options;
+  }, [defaultServiceInterest]);
 
   const [payload, setPayload] = useState<LeadPayload>({
     first_name: "",
@@ -48,13 +68,16 @@ export function LeadForm({ variant = "default", title = "Hablemos de tu proyecto
     company: "",
     role: "",
     team_size: "",
-    service_interest: variant === "enterprise" ? "Enterprise / Propuesta" : "Consultoría",
+    service_interest: defaultServiceInterest,
     challenge_summary: "",
     preferred_language: "Español",
     consent_checkbox: false,
     website: "",
     captcha_token: "",
-    utm: {}
+    lead_kind: leadKind,
+    source,
+    utm: {},
+    metadata
   });
 
   const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
@@ -65,13 +88,15 @@ export function LeadForm({ variant = "default", title = "Hablemos de tu proyecto
     setPayload((prev) => ({ ...prev, utm: readUTMData() }));
   }, []);
 
-  const buttonLabel = useMemo(() => {
-    if (loading) return "Enviando...";
-    return variant === "enterprise" ? "Solicitar evaluación" : "Enviar y continuar";
-  }, [loading, variant]);
+  const buttonLabel = useMemo(() => (loading ? "Enviando..." : submitLabel ?? "Enviar y continuar"), [loading, submitLabel]);
 
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    if (hasCaptcha && !payload.captcha_token) {
+      setError("Completa la verificacion de seguridad antes de enviar.");
+      return;
+    }
+
     setLoading(true);
     setError(null);
 
@@ -87,14 +112,20 @@ export function LeadForm({ variant = "default", title = "Hablemos de tu proyecto
         throw new Error(data.error || "No se pudo enviar el formulario");
       }
 
+      const data = (await response.json()) as { nextUrl?: string };
       trackEvent(EVENTS.LeadSubmitted, {
         service_interest: payload.service_interest,
-        variant
+        lead_kind: payload.lead_kind,
+        source: payload.source
       });
 
-      window.location.href = "/gracias/lead";
+      window.location.href = data.nextUrl || "/gracias/lead";
     } catch (submissionError) {
       setError(submissionError instanceof Error ? submissionError.message : "Error inesperado");
+      if (hasCaptcha) {
+        setPayload((prev) => ({ ...prev, captcha_token: "" }));
+        setCaptchaResetSignal((prev) => prev + 1);
+      }
     } finally {
       setLoading(false);
     }
@@ -103,6 +134,7 @@ export function LeadForm({ variant = "default", title = "Hablemos de tu proyecto
   return (
     <form className="card form-card" onSubmit={onSubmit} noValidate>
       <h2>{title}</h2>
+      {intro && <p className="form-intro">{intro}</p>}
       <div className="grid-2">
         <label>
           Nombre
@@ -150,18 +182,17 @@ export function LeadForm({ variant = "default", title = "Hablemos de tu proyecto
         <label>
           Servicio de interés
           <select required value={payload.service_interest} onChange={(e) => setPayload({ ...payload, service_interest: e.target.value })}>
-            {SERVICE_OPTIONS.map((item) => (
+            {serviceOptions.map((item) => (
               <option key={item} value={item}>
                 {item}
               </option>
             ))}
-            {variant === "enterprise" && <option value="Enterprise / Propuesta">Enterprise / Propuesta</option>}
           </select>
         </label>
       </div>
 
       <label>
-        Reto principal
+        {challengeLabel}
         <textarea required rows={4} value={payload.challenge_summary} onChange={(e) => setPayload({ ...payload, challenge_summary: e.target.value })} />
       </label>
 
@@ -179,14 +210,13 @@ export function LeadForm({ variant = "default", title = "Hablemos de tu proyecto
       </label>
 
       {hasCaptcha && (
-        <label>
-          Token captcha
-          <input
-            placeholder="Integrar widget Turnstile en producción"
-            value={payload.captcha_token}
-            onChange={(e) => setPayload({ ...payload, captcha_token: e.target.value })}
+        <div className="captcha-block">
+          <p className="micro-label">Verificación anti-spam</p>
+          <TurnstileWidget
+            resetSignal={captchaResetSignal}
+            onTokenChange={(token) => setPayload((prev) => ({ ...prev, captcha_token: token }))}
           />
-        </label>
+        </div>
       )}
 
       <input
@@ -201,7 +231,7 @@ export function LeadForm({ variant = "default", title = "Hablemos de tu proyecto
 
       {error && <p className="error-text">{error}</p>}
 
-      <button type="submit" className="btn btn-primary" disabled={loading}>
+      <button type="submit" className="btn btn-primary" disabled={loading || (hasCaptcha && !payload.captcha_token)}>
         {buttonLabel}
       </button>
     </form>

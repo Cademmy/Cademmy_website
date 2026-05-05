@@ -4,6 +4,14 @@ export async function syncLeadToHubSpot(lead: LeadRecord): Promise<void> {
   const accessToken = process.env.HUBSPOT_ACCESS_TOKEN;
   if (!accessToken) return;
 
+  const context = [
+    `Fuente: ${lead.source}`,
+    `Tipo: ${lead.lead_kind}`,
+    lead.diagnosis?.result?.risk ? `Riesgo diagnóstico: ${lead.diagnosis.result.risk}` : null
+  ]
+    .filter(Boolean)
+    .join(" | ");
+
   await fetch("https://api.hubapi.com/crm/v3/objects/contacts", {
     method: "POST",
     headers: {
@@ -23,7 +31,7 @@ export async function syncLeadToHubSpot(lead: LeadRecord): Promise<void> {
         cademmy_team_size: lead.team_size,
         cademmy_preferred_language: lead.preferred_language,
         cademmy_lead_id: lead.id,
-        cademmy_challenge_summary: lead.challenge_summary,
+        cademmy_challenge_summary: context ? `${lead.challenge_summary}\n${context}` : lead.challenge_summary,
         cademmy_utm_source: lead.utm.utm_source ?? "",
         cademmy_utm_medium: lead.utm.utm_medium ?? "",
         cademmy_utm_campaign: lead.utm.utm_campaign ?? ""

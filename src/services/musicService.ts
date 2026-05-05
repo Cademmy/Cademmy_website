@@ -11,11 +11,11 @@ export interface MusicGenerationProgress {
  * Orquestador del Sistema de Dos Cerebros (Gemini + Suno).
  * MODO RESILIENCIA TOTAL (V4 + Balance Check)
  */
-const SUNO_API_KEY = "4906363e6804085dfb7e6dcf79ef53fc";
+const SUNO_API_KEY = import.meta.env.VITE_SUNO_API_KEY;
 const SUNO_BASE_URL = "https://api.sunoapi.org";
-const GEMINI_API_KEY = "AIzaSyDPM50JIGjqtxQAYSB2fqsW6CtXbnAcERU";
+const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
 
-const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
+const genAI = GEMINI_API_KEY ? new GoogleGenerativeAI(GEMINI_API_KEY) : null;
 
 const SYSTEM_INSTRUCTION = `Actúa como Compositor Pedagógico de ÉLITE y Experto en Neuromarketing. 
 Tu misión es crear himnos de aprendizaje memorables que utilicen la psicología de la música para anclar conocimientos.
@@ -41,6 +41,9 @@ export const MusicService = {
      */
     async checkBalance(): Promise<number> {
         console.log("Cerebro 2: Verificando balance de créditos...");
+        if (!SUNO_API_KEY) {
+            throw new Error("Falta VITE_SUNO_API_KEY");
+        }
         try {
             const response = await fetch(`${SUNO_BASE_URL}/api/v1/generate/credit`, {
                 headers: { 'Authorization': `Bearer ${SUNO_API_KEY}` }
@@ -68,6 +71,9 @@ export const MusicService = {
         const fullPrompt = `${SYSTEM_INSTRUCTION}\nTema: ${topic}\nIntención: ${intention}\nGenera directo la letra:`;
 
         try {
+            if (!genAI) {
+                throw new Error("Falta VITE_GEMINI_API_KEY");
+            }
             const flashModel = genAI.getGenerativeModel({ model: "gemini-1.5-flash-latest" });
             const result = await flashModel.generateContent(fullPrompt);
             const response = await result.response;
